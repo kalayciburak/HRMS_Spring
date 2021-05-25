@@ -23,5 +23,4 @@ public class HrmsApplication {
                 .apis(RequestHandlerSelectors.basePackage("torukobyte.hrms"))
                 .build();
     }
-
 }

@@ -9,10 +9,10 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "job_positions", uniqueConstraints = {@UniqueConstraint(columnNames = {"job_title"})})
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 @AllArgsConstructor
 @NoArgsConstructor
-public class JobPosition {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +20,12 @@ public class JobPosition {
     @NotNull
     private int id;
 
-    @Column(name = "job_title")
     @NotNull
-    private String jobTitle;
+    @Column(name = "email")
+    private String email;
+
+    @NotNull
+    @Column(name = "password")
+    private String password;
 
 }
