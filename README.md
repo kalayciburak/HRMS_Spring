@@ -31,9 +31,9 @@ Bu pozisyonlar tekrar edemez. Kullanıcı uyarılır.
 
 ### Listeleme İşlemleri
 
-![Screenshot_8](https://user-images.githubusercontent.com/61664693/119536623-f566e180-bd91-11eb-8232-5c454105ba8c.png)
 ![Screenshot_13](https://user-images.githubusercontent.com/61664693/119536626-f566e180-bd91-11eb-9fac-133c6c198d03.png)
 ![Screenshot_11](https://user-images.githubusercontent.com/61664693/119536627-f5ff7800-bd91-11eb-9477-7fdd13809fa7.png)
+![Screenshot_8](https://user-images.githubusercontent.com/61664693/119536623-f566e180-bd91-11eb-8232-5c454105ba8c.png)
 
 ### Kullanıcı Geri Bildirimleri
 
