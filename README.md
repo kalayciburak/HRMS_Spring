@@ -1,6 +1,6 @@
 ## Human resource management system
 
-#### <span style="color:#FF0048FF;">Req 1 : İş Arayanlar sisteme kayıt olabilmelidir.
+#### <span style="color:#FF0048FF;">Req 1 : İş Arayanlar sisteme kayıt olabilmelidir.</span>
 
 Kabul Kriterleri:
 <ul style="color: #92c3ff">
@@ -12,7 +12,7 @@ Kabul Kriterleri:
     <li>Kayıdın gerçekleşmesi için e-posta doğrulaması gerekir.</li>
 </ul>
 
-#### <span style="color:#FF0048FF;">Req 2 : İş verenler sisteme kayıt olabilmelidir.
+#### <span style="color:#FF0048FF;">Req 2 : İş verenler sisteme kayıt olabilmelidir.</span>
 
 Kabul Kriterleri:
 
@@ -23,18 +23,18 @@ Kabul Kriterleri:
     <li>Daha önce kayıtlı bir e-posta var ise kayıt gerçekleşmez. Kullanıcı bilgilendirilir.</li>
 </ul>
 
-#### <span style="color:#FF0048FF;">Req 3 : Sisteme genel iş pozisyonu isimleri eklenebilmelidir.
+#### <span style="color:#FF0048FF;">Req 3 : Sisteme genel iş pozisyonu isimleri eklenebilmelidir.</span>
 
 Kabul Kriterleri:
 <ul style="color: #92c3ff">
     <li>Bu pozisyonlar tekrar edemez. Kullanıcı uyarılır.</li>
 </ul>
 
-#### <span style="color:#FF0048FF;">Req 4 : İş verenler listelenebilmelidir. (Sadece tüm liste)
+#### <span style="color:#FF0048FF;">Req 4 : İş verenler listelenebilmelidir. (Sadece tüm liste)</span>
 
-#### <span style="color:#FF0048FF;">Req 5 : İş arayanlar listelenebilmelidir. (Sadece tüm liste)
+#### <span style="color:#FF0048FF;">Req 5 : İş arayanlar listelenebilmelidir. (Sadece tüm liste)</span>
 
-#### <span style="color:#FF0048FF;">Req 6 : İş pozisyonları listelenebilmelidir. (Sadece tüm liste)
+#### <span style="color:#FF0048FF;">Req 6 : İş pozisyonları listelenebilmelidir. (Sadece tüm liste)</span>
 
 ### <span style="color:#b453ff;">Kurumsal Mimari</span>
 
