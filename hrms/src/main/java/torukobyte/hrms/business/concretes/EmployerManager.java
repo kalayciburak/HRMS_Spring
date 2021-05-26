@@ -36,6 +36,8 @@ public class EmployerManager implements EmployerService {
                 return new ErrorResult("Error: Mail formata uygun değil!");
             } else if (!employerDomain.equals(website)) {
                 return new ErrorResult("Error: Web sitesi ile email aynı domaine sahip değil!");
+            } else if (!employer.getPassword().equals(employer.getConfirmPassword())) {
+                return new ErrorResult("Error: Girmiş olduğunuz şifreler uyuşmuyor!");
             } else {
                 this.employerDao.save(employer);
                 return new SuccessResult(

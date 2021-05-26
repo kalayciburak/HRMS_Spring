@@ -33,4 +33,7 @@ public class Employer extends User {
     @Column(name = "phone_number")
     @NotNull
     private String phoneNumber;
+
+    @NotNull
+    private String confirmPassword;
 }
