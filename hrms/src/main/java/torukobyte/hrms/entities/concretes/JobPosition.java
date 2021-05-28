@@ -24,4 +24,6 @@ public class JobPosition {
     @NotNull
     private String jobTitle;
 
+    @OneToOne(mappedBy = "jobPosition")
+    private JobAdvert jobAdvert;
 }

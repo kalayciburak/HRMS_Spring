@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 @AllArgsConstructor
 @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 
     @Id

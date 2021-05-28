@@ -7,26 +7,28 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @Data
 @Entity
 @Table(name = "employers", uniqueConstraints = {@UniqueConstraint(columnNames = {"company_name"})})
 @AllArgsConstructor
 @NoArgsConstructor
+@PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
 public class Employer extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employer_id")
-    @NotNull
-    private int id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "id")
+//    @NotNull
+//    private int id;
 
     @Column(name = "company_name")
     @NotNull
     private String companyName;
 
-    @Column(name = "webiste")
+    @Column(name = "website")
     @NotNull
     private String website;
 
@@ -36,4 +38,9 @@ public class Employer extends User {
 
     @NotNull
     private String confirmPassword;
+
+    @OneToMany(mappedBy = "employer")
+    private List<JobAdvert> adverts;
+
+
 }
