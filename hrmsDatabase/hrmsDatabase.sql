@@ -15,34 +15,32 @@ CREATE TABLE public.users
 
 CREATE TABLE public.jobseekers
 (
-    id              INTEGER               NOT NULL,
     user_id         INTEGER               NOT NULL,
     first_name      CHARACTER VARYING(35) NOT NULL,
     last_name       CHARACTER VARYING(35) NOT NULL,
     identity_number CHARACTER VARYING(11) NOT NULL,
     birth_date      DATE                  NOT NULL,
-    CONSTRAINT pk_jobseekers PRIMARY KEY (id),
+    CONSTRAINT pk_jobseekers PRIMARY KEY (user_id),
     CONSTRAINT fk_jobseekers_users FOREIGN KEY (user_id) REFERENCES public.users (id) ON DELETE CASCADE,
     CONSTRAINT uc_jobseekers_identity_number UNIQUE (identity_number)
 );
 
 CREATE TABLE public.employers
 (
-    id           INTEGER                NOT NULL,
     user_id      INTEGER                NOT NULL,
     company_name CHARACTER VARYING(255) NOT NULL,
     website      CHARACTER VARYING(255) NOT NULL,
     phone_number CHARACTER VARYING(12)  NOT NULL,
-    CONSTRAINT pk_employers PRIMARY KEY (id),
-    CONSTRAINT fk_employers_users FOREIGN KEY (user_id) REFERENCES public.users (id) ON DELETE CASCADE
+    CONSTRAINT pk_employers PRIMARY KEY (user_id),
+    CONSTRAINT fk_employers_users FOREIGN KEY (user_id) REFERENCES public.users (id) ON DELETE CASCADE,
+    CONSTRAINT uc_employers_company_name UNIQUE (company_name)
+
 );
 
 CREATE TABLE public.system_personels
 (
-    id       INTEGER               NOT NULL,
     user_id  INTEGER               NOT NULL,
     username CHARACTER VARYING(35) NOT NULL,
-    CONSTRAINT pk_system_personels PRIMARY KEY (id),
     CONSTRAINT fk_system_personels_users FOREIGN KEY (user_id) REFERENCES public.users (id) ON DELETE CASCADE
 );
 
@@ -62,7 +60,7 @@ CREATE TABLE public.employers_activations
     is_employer_activated boolean NOT NULL,
 
     CONSTRAINT pk_employers_activations PRIMARY KEY (id),
-    CONSTRAINT fk_employers_activations_employers FOREIGN KEY (employer_id) REFERENCES public.employers (id) ON DELETE CASCADE
+    CONSTRAINT fk_employers_activations_employers FOREIGN KEY (employer_id) REFERENCES public.employers (user_id) ON DELETE CASCADE
 );
 
 CREATE TABLE public.jobseekers_activations
@@ -72,5 +70,114 @@ CREATE TABLE public.jobseekers_activations
     is_email_confirmed boolean NOT NULL,
     is_mernis_valid    boolean NOT NULL,
     CONSTRAINT pk_jobseekers_activations PRIMARY KEY (id),
-    CONSTRAINT fk_jobseekers_activations_jobseekers FOREIGN KEY (jobseeker_id) REFERENCES public.jobseekers (id) ON DELETE CASCADE
+    CONSTRAINT fk_jobseekers_activations_jobseekers FOREIGN KEY (jobseeker_id) REFERENCES public.jobseekers (user_id) ON DELETE CASCADE
 );
+
+CREATE TABLE public.cities
+(
+    id        INTEGER               NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    city_name CHARACTER VARYING(25) NOT NULL UNIQUE,
+    CONSTRAINT pk_cities PRIMARY KEY (id)
+);
+
+CREATE TABLE public.job_adverts
+(
+    id              INTEGER                  NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    employer_id     INTEGER                  NOT NULL,
+    city_id         INTEGER                  NOT NULL,
+    job_position_id INTEGER                  NOT NULL,
+    description     CHARACTER VARYING(25000) NOT NULL,
+    salary          INTEGER                  NOT NULL,
+    position_count  INTEGER                  NOT NULL,
+    airdate         timestamp with time zone NOT NULL,
+    deadline        DATE                     NOT NULL,
+    is_active       boolean                  NOT NULL,
+    CONSTRAINT pk_job_adverts PRIMARY KEY (id),
+    CONSTRAINT fk_job_adverts_job_positions FOREIGN KEY (job_position_id) REFERENCES public.job_positions (id) ON DELETE CASCADE,
+    CONSTRAINT fk_job_adverts_cities FOREIGN KEY (city_id) REFERENCES public.cities (id) ON DELETE CASCADE,
+    CONSTRAINT fk_job_adverts_employers FOREIGN KEY (employer_id) REFERENCES public.employers (user_id) ON DELETE CASCADE
+);
+
+INSERT INTO cities (city_name)
+VALUES ('ADANA'),
+       ('ADIYAMAN'),
+       ('AFYONKARAHİSAR'),
+       ('AĞRI'),
+       ('AMASYA'),
+       ('ANKARA'),
+       ('ANTALYA'),
+       ('ARTVİN'),
+       ('AYDIN'),
+       ('BALIKESİR'),
+       ('BİLECİK'),
+       ('BİNGÖL'),
+       ('BİTLİS'),
+       ('BOLU'),
+       ('BURDUR'),
+       ('BURSA'),
+       ('ÇANAKKALE'),
+       ('ÇANKIRI'),
+       ('ÇORUM'),
+       ('DENİZLİ'),
+       ('DİYARBAKIR'),
+       ('EDİRNE'),
+       ('ELAZIĞ'),
+       ('ERZİNCAN'),
+       ('ERZURUM'),
+       ('ESKİŞEHİR'),
+       ('GAZİANTEP'),
+       ('GİRESUN'),
+       ('GÜMÜŞHANE'),
+       ('HAKKARİ'),
+       ('HATAY'),
+       ('ISPARTA'),
+       ('MERSİN'),
+       ('İSTANBUL'),
+       ('İZMİR'),
+       ('KARS'),
+       ('KASTAMONU'),
+       ('KAYSERİ'),
+       ('KIRKLARELİ'),
+       ('KIRŞEHİR'),
+       ('KOCAELİ'),
+       ('KONYA'),
+       ('KÜTAHYA'),
+       ('MALATYA'),
+       ('MANİSA'),
+       ('KAHRAMANMARAŞ'),
+       ('MARDİN'),
+       ('MUĞLA'),
+       ('MUŞ'),
+       ('NEVŞEHİR'),
+       ('NİĞDE'),
+       ('ORDU'),
+       ('RİZE'),
+       ('SAKARYA'),
+       ('SAMSUN'),
+       ('SİİRT'),
+       ('SİNOP'),
+       ('SİVAS'),
+       ('TEKİRDAĞ'),
+       ('TOKAT'),
+       ('TRABZON'),
+       ('TUNCELİ'),
+       ('ŞANLIURFA'),
+       ('UŞAK'),
+       ('VAN'),
+       ('YOZGAT'),
+       ('ZONGULDAK'),
+       ('AKSARAY'),
+       ('BAYBURT'),
+       ('KARAMAN'),
+       ('KIRIKKALE'),
+       ('BATMAN'),
+       ('ŞIRNAK'),
+       ('BARTIN'),
+       ('ARDAHAN'),
+       ('IĞDIR'),
+       ('YALOVA'),
+       ('KARABÜK'),
+       ('KİLİS'),
+       ('OSMANİYE'),
+       ('DÜZCE');
+
