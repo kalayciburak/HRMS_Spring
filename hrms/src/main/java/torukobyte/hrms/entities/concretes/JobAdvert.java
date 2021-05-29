@@ -1,6 +1,6 @@
 package torukobyte.hrms.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,14 +23,17 @@ public class JobAdvert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private int id;
 
     @Column(name = "description")
     @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String description;
 
     @Column(name = "salary")
     @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private int salary;
 
     @Column(name = "position_count")
@@ -42,11 +45,13 @@ public class JobAdvert {
     private LocalDate deadline;
 
     @Column(name = "airdate")
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    //düzenlenebilir gibi görünsede auto değer atıyor.
     private LocalDateTime airdate = LocalDateTime.now();
 
     @Column(name = "is_active")
     @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private boolean isActive = true;
 
     @ManyToOne()

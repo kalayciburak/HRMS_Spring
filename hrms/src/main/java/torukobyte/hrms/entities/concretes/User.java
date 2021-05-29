@@ -1,5 +1,6 @@
 package torukobyte.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,14 +20,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @NotNull
+//    @ApiModelProperty(hidden = true) //readonly
     private int id;
 
     @NotNull
     @Column(name = "email")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String email;
 
     @NotNull
     @Column(name = "password")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+
 
 }

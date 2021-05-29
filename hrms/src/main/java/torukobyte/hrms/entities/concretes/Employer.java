@@ -1,6 +1,7 @@
 package torukobyte.hrms.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,19 +26,20 @@ public class Employer extends User {
 
     @Column(name = "website")
     @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String website;
 
     @Column(name = "phone_number")
     @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String phoneNumber;
 
     @NotNull
     @Transient
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String confirmPassword;
 
     @JsonIgnore
     @OneToMany(mappedBy = "employer")
     private List<JobAdvert> adverts;
-
-
 }
