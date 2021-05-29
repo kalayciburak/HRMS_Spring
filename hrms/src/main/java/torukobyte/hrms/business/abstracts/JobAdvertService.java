@@ -11,9 +11,9 @@ public interface JobAdvertService {
 
     DataResult<List<JobAdvert>> getActiveJobAdverts();
 
-    DataResult<List<JobAdvert>> getActiveJobAdvertsSorted();
-
     DataResult<List<JobAdvert>> getActiveJobAdvertsForEmployer(String companyName);
+
+    DataResult<List<JobAdvert>> findAllByIsActiveTrue();
 
     Result deactiveJobAdvert(int jobAdvertId);
 

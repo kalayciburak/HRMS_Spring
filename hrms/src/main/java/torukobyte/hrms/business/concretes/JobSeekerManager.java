@@ -24,7 +24,11 @@ public class JobSeekerManager implements JobSeekerService {
 
     @Override
     public DataResult<List<JobSeeker>> getJobSeekers() {
-        return new SuccessDataResult<>(this.jobSeekerDao.findAll(), "Success: İş Arayanlar listelendi.");
+        if ((long) this.jobSeekerDao.findAll().size() > 0) {
+            return new SuccessDataResult<>(this.jobSeekerDao.findAll(), "Success: İş Arayanlar listelendi!");
+        }
+
+        return new WarningDataResult<>(this.jobSeekerDao.findAll(), "Warning: Herhangi bir iş arayan bulunamadı!");
     }
 
     @Override
@@ -41,7 +45,7 @@ public class JobSeekerManager implements JobSeekerService {
             }
         } catch (Exception e) {
             if (e.getMessage()
-                 .equals("could not execute statement; SQL [n/a]; constraint [uc_users_email]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement")) {
+                 .contains("[uc_users_email]")) {
                 return new ErrorResult("Error: Eposta sistemde mevcut, lütfen başka bir eposta adresi giriniz!");
             } else {
                 return new ErrorResult(

@@ -29,14 +29,14 @@ public class JobAdvertsController {
         return this.jobAdvertService.getActiveJobAdverts();
     }
 
-    @GetMapping("/getActiveJobAdvertsSorted")
-    public DataResult<List<JobAdvert>> getActiveJobAdvertsSorted() {
-        return this.jobAdvertService.getActiveJobAdvertsSorted();
-    }
-
     @GetMapping("/getJobAdvertsForCompanyName")
     public DataResult<List<JobAdvert>> getActiveJobAdvertsForEmployer(String companyName) {
         return this.jobAdvertService.getActiveJobAdvertsForEmployer(companyName);
+    }
+
+    @GetMapping("/getActiveJobAdvertsSorted")
+    public DataResult<List<JobAdvert>> findAllByIsActiveTrueSorted() {
+        return this.jobAdvertService.findAllByIsActiveTrue();
     }
 
     @PostMapping("/addJobadvert")

@@ -21,7 +21,11 @@ public class EmployerManager implements EmployerService {
 
     @Override
     public DataResult<List<Employer>> getEmployers() {
-        return new SuccessDataResult<>(this.employerDao.findAll(), "Success: İş Verenler listelendi.");
+        if ((long) this.employerDao.findAll().size() > 0) {
+            return new SuccessDataResult<>(this.employerDao.findAll(), "Success: İş Verenler listelendi!");
+        }
+
+        return new WarningDataResult<>(this.employerDao.findAll(), "Warning: Herhangi bir iş veren bulunamadı!");
     }
 
     @Override
@@ -45,7 +49,7 @@ public class EmployerManager implements EmployerService {
             }
         } catch (Exception e) {
             if (e.getMessage()
-                 .equals("could not execute statement; SQL [n/a]; constraint [uc_users_email]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement")) {
+                 .contains("[uc_users_email]")) {
                 return new ErrorResult("Error: Eposta sistemde mevcut, lütfen başka bir eposta adresi giriniz!");
             } else {
                 return new ErrorResult("Error: Şirket adı sistem de kayıtlı, lütfen başka bir Şirket adı giriniz!");

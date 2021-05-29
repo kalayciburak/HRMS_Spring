@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import torukobyte.hrms.business.abstracts.JobAdvertService;
-import torukobyte.hrms.core.utilities.results.DataResult;
-import torukobyte.hrms.core.utilities.results.Result;
-import torukobyte.hrms.core.utilities.results.SuccessDataResult;
-import torukobyte.hrms.core.utilities.results.SuccessResult;
+import torukobyte.hrms.core.utilities.results.*;
 import torukobyte.hrms.dataAccess.abstracts.JobAdvertsDao;
 import torukobyte.hrms.entities.concretes.JobAdvert;
 
@@ -24,25 +21,48 @@ public class JobAdvertManager implements JobAdvertService {
 
     @Override
     public DataResult<List<JobAdvert>> getJobAdverts() {
-        return new SuccessDataResult<>(this.jobAdvertsDao.findAll(), "Success: İlanlar listelendi.");
+        if ((long) this.jobAdvertsDao.findAll().size() > 0) {
+            return new SuccessDataResult<>(this.jobAdvertsDao.findAll(), "Success: Tüm iş ilanları listelendi.");
+        }
+        return new WarningDataResult<>(this.jobAdvertsDao.findAll(), "Warning: Herhangi bir iş ilanı bulunamadı!");
     }
 
     @Override
     public DataResult<List<JobAdvert>> getActiveJobAdverts() {
-        return new SuccessDataResult<>(this.jobAdvertsDao.findAllByIsActiveTrue(), "Aktif tüm iş ilanları listelendi!");
-    }
-
-    @Override
-    public DataResult<List<JobAdvert>> getActiveJobAdvertsSorted() {
-        Sort sort = Sort.by(Sort.Direction.DESC, "airdate");
-        return new SuccessDataResult<>(this.jobAdvertsDao.findAll(sort), "Aktif tüm iş ilanları listelendi!");
+        if ((long) this.jobAdvertsDao.findAllByIsActiveTrue().size() > 0) {
+            return new SuccessDataResult<>(
+                    this.jobAdvertsDao.findAllByIsActiveTrue(),
+                    "Success: Aktif tüm iş ilanları listelendi!");
+        }
+        return new WarningDataResult<>(
+                this.jobAdvertsDao.findAllByIsActiveTrue(),
+                "Warning: Aktif iş ilanı bulunamadı!");
     }
 
     @Override
     public DataResult<List<JobAdvert>> getActiveJobAdvertsForEmployer(String companyName) {
-        return new SuccessDataResult<>(
+        if ((long) this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndEmployer_CompanyName(companyName).size() > 0) {
+            return new SuccessDataResult<>(this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndEmployer_CompanyName(
+                    companyName), "Success: Şirket'e ait tüm ilanlar listelendi!");
+        }
+
+        return new WarningDataResult<>(
                 this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndEmployer_CompanyName(companyName),
-                "Success: Şirket'e ait tüm ilanlar listelendi!");
+                "Warning: Şirket'e ait herhangi bir ilan bulunamadı!");
+
+    }
+
+    @Override
+    public DataResult<List<JobAdvert>> findAllByIsActiveTrue() {
+        Sort sort = Sort.by(Sort.Direction.DESC, "airdate");
+        if ((long) this.jobAdvertsDao.findAllByIsActiveTrue(sort).size() > 0) {
+            return new SuccessDataResult<>(
+                    this.jobAdvertsDao.findAllByIsActiveTrue(sort),
+                    "Success: Aktif tüm iş ilanları yayınlanma tarihine göre listelendi!");
+        }
+        return new WarningDataResult<>(
+                this.jobAdvertsDao.findAllByIsActiveTrue(sort),
+                "Warning: Aktif iş ilanı bulunamadı!");
     }
 
     @Override

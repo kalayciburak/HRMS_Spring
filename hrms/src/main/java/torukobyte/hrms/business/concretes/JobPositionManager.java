@@ -20,7 +20,10 @@ public class JobPositionManager implements JobPositionService {
 
     @Override
     public DataResult<List<JobPosition>> getPositions() {
-        return new SuccessDataResult<>(this.jobPositionDao.findAll(), "Success: Pozisyonalar listelendi.");
+        if ((long) this.jobPositionDao.findAll().size() > 0) {
+            return new SuccessDataResult<>(this.jobPositionDao.findAll(), "Success: Pozisyonalar listelendi!");
+        }
+        return new WarningDataResult<>(this.jobPositionDao.findAll(), "Warning: Herhangi bir pozisyon bulunamadı!");
     }
 
     @Override

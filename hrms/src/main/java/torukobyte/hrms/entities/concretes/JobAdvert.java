@@ -23,7 +23,6 @@ public class JobAdvert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @NotNull
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private int id;
 
     @Column(name = "description")

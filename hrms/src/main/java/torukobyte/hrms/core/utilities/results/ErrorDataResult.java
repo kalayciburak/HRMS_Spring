@@ -3,18 +3,18 @@ package torukobyte.hrms.core.utilities.results;
 public class ErrorDataResult<T> extends DataResult<T> {
 
     public ErrorDataResult(T data, String message) {
-        super(data, false, message);
+        super(data, "error", message);
     }
 
     public ErrorDataResult(T data) {
-        super(data, false);
+        super(data, "error");
     }
 
     public ErrorDataResult(String message) {
-        super(null, false, message);
+        super(null, "error", message);
     }
 
     public ErrorDataResult() {
-        super(null, false);
+        super(null, "error");
     }
 }

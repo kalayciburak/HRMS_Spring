@@ -35,7 +35,7 @@ public class EmployerController {
     }
 
     @PostMapping("/updateIsActive")
-    public Result deactiveJobAdvert(@RequestParam("id") int jobAdvertId) {
+    public Result deactiveJobAdvert(@RequestParam("job_adverts_id") int jobAdvertId) {
         return this.jobAdvertService.deactiveJobAdvert(jobAdvertId);
     }
 }
