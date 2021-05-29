@@ -17,12 +17,6 @@ import javax.persistence.*;
 @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
 public class SystemPersonel extends User {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "id")
-//    @NotNull
-//    private int id;
-
     @Column(name = "username")
     @NotNull
     private String username;

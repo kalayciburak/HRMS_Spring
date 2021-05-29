@@ -19,13 +19,29 @@ public class JobAdvertsController {
         this.jobAdvertService = jobAdvertService;
     }
 
-    @GetMapping("/getjobadverts")
+    @GetMapping("/getJobAdverts")
     public DataResult<List<JobAdvert>> getJobAdverts() {
         return this.jobAdvertService.getJobAdverts();
     }
 
-    @PostMapping("/addjobadvert")
-    public Result addEmployer(@RequestBody JobAdvert jobAdvert) {
+    @GetMapping("/getActiveJobAdverts")
+    public DataResult<List<JobAdvert>> getActiveJobAdverts() {
+        return this.jobAdvertService.getActiveJobAdverts();
+    }
+
+    @GetMapping("/getActiveJobAdvertsSorted")
+    public DataResult<List<JobAdvert>> getActiveJobAdvertsSorted() {
+        return this.jobAdvertService.getActiveJobAdvertsSorted();
+    }
+
+    @GetMapping("/getJobAdvertsForCompanyName")
+    public DataResult<List<JobAdvert>> getActiveJobAdvertsForEmployer(String companyName) {
+        return this.jobAdvertService.getActiveJobAdvertsForEmployer(companyName);
+    }
+
+    @PostMapping("/addJobadvert")
+    public Result addJobAdverts(@RequestBody JobAdvert jobAdvert) {
         return this.jobAdvertService.addJobAdvert(jobAdvert);
     }
+
 }

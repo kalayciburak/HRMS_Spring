@@ -1,6 +1,7 @@
 package torukobyte.hrms.business.concretes;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import torukobyte.hrms.business.abstracts.JobAdvertService;
 import torukobyte.hrms.core.utilities.results.DataResult;
@@ -24,6 +25,30 @@ public class JobAdvertManager implements JobAdvertService {
     @Override
     public DataResult<List<JobAdvert>> getJobAdverts() {
         return new SuccessDataResult<>(this.jobAdvertsDao.findAll(), "Success: İlanlar listelendi.");
+    }
+
+    @Override
+    public DataResult<List<JobAdvert>> getActiveJobAdverts() {
+        return new SuccessDataResult<>(this.jobAdvertsDao.findAllByIsActiveTrue(), "Aktif tüm iş ilanları listelendi!");
+    }
+
+    @Override
+    public DataResult<List<JobAdvert>> getActiveJobAdvertsSorted() {
+        Sort sort = Sort.by(Sort.Direction.DESC, "airdate");
+        return new SuccessDataResult<>(this.jobAdvertsDao.findAll(sort), "Aktif tüm iş ilanları listelendi!");
+    }
+
+    @Override
+    public DataResult<List<JobAdvert>> getActiveJobAdvertsForEmployer(String companyName) {
+        return new SuccessDataResult<>(
+                this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndEmployer_CompanyName(companyName),
+                "Success: Şirket'e ait tüm ilanlar listelendi!");
+    }
+
+    @Override
+    public Result deactiveJobAdvert(int jobAdvertId) {
+        this.jobAdvertsDao.deactiveJobAdvert(jobAdvertId);
+        return new SuccessResult("Success: İlan başarıyla inaktif edildi!");
     }
 
     @Override

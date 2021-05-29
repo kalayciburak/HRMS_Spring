@@ -18,12 +18,6 @@ import java.time.LocalDate;
 @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
 public class JobSeeker extends User {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "id")
-//    @NotNull
-//    private int id;
-
     @Column(name = "first_name")
     @NotNull
     private String firstName;

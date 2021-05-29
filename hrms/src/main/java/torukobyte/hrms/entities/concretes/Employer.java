@@ -1,5 +1,6 @@
 package torukobyte.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,12 +19,6 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
 public class Employer extends User {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "id")
-//    @NotNull
-//    private int id;
-
     @Column(name = "company_name")
     @NotNull
     private String companyName;
@@ -37,8 +32,10 @@ public class Employer extends User {
     private String phoneNumber;
 
     @NotNull
+    @Transient
     private String confirmPassword;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "employer")
     private List<JobAdvert> adverts;
 
