@@ -15,11 +15,12 @@ CREATE TABLE public.users
 
 CREATE TABLE public.jobseekers
 (
-    user_id         INTEGER               NOT NULL,
-    first_name      CHARACTER VARYING(35) NOT NULL,
-    last_name       CHARACTER VARYING(35) NOT NULL,
-    identity_number CHARACTER VARYING(11) NOT NULL,
-    birth_date      DATE                  NOT NULL,
+    user_id            INTEGER               NOT NULL,
+    curricula_vitae_id INTEGER               NOT NULL,
+    first_name         CHARACTER VARYING(35) NOT NULL,
+    last_name          CHARACTER VARYING(35) NOT NULL,
+    identity_number    CHARACTER VARYING(11) NOT NULL,
+    birth_date         DATE                  NOT NULL,
     CONSTRAINT pk_jobseekers PRIMARY KEY (user_id),
     CONSTRAINT fk_jobseekers_users FOREIGN KEY (user_id) REFERENCES public.users (id) ON DELETE CASCADE,
     CONSTRAINT uc_jobseekers_identity_number UNIQUE (identity_number)
@@ -97,6 +98,125 @@ CREATE TABLE public.job_adverts
     CONSTRAINT fk_job_adverts_cities FOREIGN KEY (city_id) REFERENCES public.cities (id) ON DELETE CASCADE,
     CONSTRAINT fk_job_adverts_employers FOREIGN KEY (employer_id) REFERENCES public.employers (user_id) ON DELETE CASCADE
 );
+
+CREATE TABLE public.curricula_vitaes
+(
+    id                      INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    education_id            INTEGER NOT NULL,
+    job_experience_id       INTEGER NOT NULL,
+    jobseeker_language_id   INTEGER NOT NULL,
+    social_media_id         INTEGER NOT NULL,
+    programming_language_id INTEGER NOT NULL,
+    picture_id              INTEGER NOT NULL,
+    cover_letter            CHARACTER VARYING(150),
+    CONSTRAINT pk_curricula_vitaes PRIMARY KEY (id)
+);
+
+CREATE TABLE public.educations
+(
+    id         INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    school_id  INTEGER NOT NULL,
+    start_date DATE    NOT NULL,
+    end_date   DATE,
+    CONSTRAINT pk_educations PRIMARY KEY (id)
+);
+
+
+CREATE TABLE public.schools
+(
+    id          INTEGER                NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    school_name CHARACTER VARYING(150) NOT NULL,
+    CONSTRAINT pk_schools PRIMARY KEY (id)
+);
+
+CREATE TABLE public.departments
+(
+    id              INTEGER                NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    school_id       INTEGER                NOT NULL,
+    department_name CHARACTER VARYING(150) NOT NULL,
+    CONSTRAINT pk_departments PRIMARY KEY (id)
+);
+
+CREATE TABLE public.job_experiences
+(
+    id            INTEGER                NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    company_name  CHARACTER VARYING(150) NOT NULL,
+    position_name CHARACTER VARYING(150) NOT NULL,
+    start_date    DATE                   NOT NULL,
+    end_date      DATE,
+    CONSTRAINT pk_job_experiences PRIMARY KEY (id)
+);
+
+CREATE TABLE public.jobseeker_languages
+(
+    id              INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    language_id     INTEGER NOT NULL,
+    language_degree INTEGER NOT NULL,
+    CONSTRAINT pk_jobseeker_languages PRIMARY KEY (id)
+);
+
+CREATE TABLE public.languages
+(
+    id            INTEGER                NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    language_name CHARACTER VARYING(150) NOT NULL,
+    CONSTRAINT pk_languages PRIMARY KEY (id)
+);
+
+CREATE TABLE public.social_medias
+(
+    id                INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    github_username   CHARACTER VARYING(150) UNIQUE,
+    linkedin_username CHARACTER VARYING(150) UNIQUE,
+    CONSTRAINT pk_social_medias PRIMARY KEY (id),
+    CONSTRAINT uc_social_medias_github_username UNIQUE (github_username),
+    CONSTRAINT uc_social_medias_linkedin_username UNIQUE (linkedin_username)
+);
+
+CREATE TABLE public.programming_languages
+(
+    id      INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    pl_name CHARACTER VARYING(150) UNIQUE,
+    CONSTRAINT pk_programming_languages PRIMARY KEY (id)
+);
+
+CREATE TABLE public.pictures
+(
+    id          INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    picture_url CHARACTER VARYING(2083) UNIQUE,
+    CONSTRAINT pk_pictures PRIMARY KEY (id),
+    CONSTRAINT uc_pictures_picture_url UNIQUE (picture_url)
+
+);
+
+ALTER TABLE public.jobseekers
+    AdD FOREIGN KEY (curricula_vitae_id) REFERENCES public.curricula_vitaes (id);
+
+ALTER TABLE public.curricula_vitaes
+    AdD FOREIGN KEY (education_id) REFERENCES public.educations (id);
+
+ALTER TABLE public.curricula_vitaes
+    AdD FOREIGN KEY (job_experience_id) REFERENCES public.job_experiences (id);
+
+ALTER TABLE public.curricula_vitaes
+    AdD FOREIGN KEY (jobseeker_language_id) REFERENCES public.jobseeker_languages (id);
+
+ALTER TABLE public.curricula_vitaes
+    AdD FOREIGN KEY (social_media_id) REFERENCES public.social_medias (id);
+
+ALTER TABLE public.curricula_vitaes
+    AdD FOREIGN KEY (programming_language_id) REFERENCES public.programming_languages (id);
+
+ALTER TABLE public.curricula_vitaes
+    AdD FOREIGN KEY (picture_id) REFERENCES public.pictures (id);
+
+ALTER TABLE public.educations
+    AdD FOREIGN KEY (school_id) REFERENCES public.schools (id);
+
+ALTER TABLE public.departments
+    AdD FOREIGN KEY (school_id) REFERENCES public.schools (id);
+
+ALTER TABLE public.jobseeker_languages
+    AdD FOREIGN KEY (language_id) REFERENCES public.languages (id);
 
 INSERT INTO cities (city_name)
 VALUES ('ADANA'),
