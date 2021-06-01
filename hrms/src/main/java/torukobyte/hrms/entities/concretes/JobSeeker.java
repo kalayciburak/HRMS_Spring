@@ -34,5 +34,9 @@ public class JobSeeker extends User {
     @NotNull
     private LocalDate birthDate;
 
+    @ManyToOne()
+    @JoinColumn(name = "curricula_vitae_id")
+    private CurriculaVitae curriculaVitae;
+
 }
 
