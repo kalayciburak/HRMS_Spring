@@ -1,6 +1,5 @@
 package torukobyte.hrms.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,6 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Data
 @Entity
@@ -36,7 +34,7 @@ public class JobSeekerLanguage {
     @JoinColumn(name = "language_id")
     private Language language;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "jobSeekerLanguage")
-    private List<CurriculaVitae> curriculaVitaes;
+    @ManyToOne
+    @JoinColumn(name = "curricula_vitae_id")
+    private CurriculaVitae curriculaVitae;
 }

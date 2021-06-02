@@ -1,11 +1,13 @@
 package torukobyte.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @Entity
@@ -23,7 +25,7 @@ public class Derpatment {
     @Column(name = "department_name")
     private String departmentName;
 
-    @ManyToOne()
-    @JoinColumn(name = "school_id")
-    private School school;
+    @JsonIgnore
+    @OneToMany(mappedBy = "derpatment")
+    private List<Education> educations;
 }

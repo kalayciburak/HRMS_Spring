@@ -1,6 +1,5 @@
 package torukobyte.hrms.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @Entity
@@ -33,10 +31,14 @@ public class Education {
     private LocalDate endDate;
 
     @ManyToOne()
+    @JoinColumn(name = "curricula_vitae_id")
+    private CurriculaVitae curriculaVitae;
+
+    @ManyToOne()
     @JoinColumn(name = "school_id")
     private School school;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "education")
-    private List<CurriculaVitae> curriculaVitaes;
+    @ManyToOne()
+    @JoinColumn(name = "department_id")
+    private Derpatment derpatment;
 }

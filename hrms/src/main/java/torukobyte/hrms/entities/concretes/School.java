@@ -27,9 +27,5 @@ public class School {
 
     @JsonIgnore
     @OneToMany(mappedBy = "school")
-    private List<Derpatment> derpatments;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "school")
     private List<Education> educations;
 }

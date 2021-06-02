@@ -1,13 +1,11 @@
 package torukobyte.hrms.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Data
 @Entity
@@ -25,7 +23,7 @@ public class Picture {
     @Column(name = "picture_url")
     private String pictureUrl;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "picture")
-    private List<CurriculaVitae> curriculaVitaes;
+    @ManyToOne()
+    @JoinColumn(name = "curricula_vitae_id")
+    private CurriculaVitae curriculaVitae;
 }
