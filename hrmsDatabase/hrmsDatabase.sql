@@ -1,4 +1,3 @@
-
 DROP SCHEMA public CASCADE;
 CREATE SCHEMA public;
 
@@ -13,12 +12,11 @@ CREATE TABLE public.users
 
 CREATE TABLE public.jobseekers
 (
-    user_id            INTEGER               NOT NULL,
-    curricula_vitae_id INTEGER               NOT NULL,
-    first_name         CHARACTER VARYING(35) NOT NULL,
-    last_name          CHARACTER VARYING(35) NOT NULL,
-    identity_number    CHARACTER VARYING(11) NOT NULL,
-    birth_date         DATE                  NOT NULL,
+    user_id         INTEGER               NOT NULL,
+    first_name      CHARACTER VARYING(35) NOT NULL,
+    last_name       CHARACTER VARYING(35) NOT NULL,
+    identity_number CHARACTER VARYING(11) NOT NULL,
+    birth_date      DATE                  NOT NULL,
     CONSTRAINT pk_jobseekers PRIMARY KEY (user_id),
     CONSTRAINT fk_jobseekers_users FOREIGN KEY (user_id) REFERENCES public.users (id) ON DELETE CASCADE,
     CONSTRAINT uc_jobseekers_identity_number UNIQUE (identity_number)
@@ -100,9 +98,13 @@ CREATE TABLE public.job_adverts
 CREATE TABLE public.curricula_vitaes
 (
     id              INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    jobseeker_id    INTEGER NOT NULL,
+    picture_url     CHARACTER VARYING(100),
     social_media_id INTEGER NOT NULL,
     cover_letter    CHARACTER VARYING(200),
-    CONSTRAINT pk_curricula_vitaes PRIMARY KEY (id)
+    CONSTRAINT pk_curricula_vitaes PRIMARY KEY (id),
+    CONSTRAINT uc_curricula_vitaes_jobseeker UNIQUE (jobseeker_id),
+    CONSTRAINT uc_curricula_vitaes_social_medias UNIQUE (social_media_id)
 );
 
 CREATE TABLE public.educations
@@ -175,20 +177,11 @@ CREATE TABLE public.programming_languages
     CONSTRAINT pk_programming_languages PRIMARY KEY (id)
 );
 
-CREATE TABLE public.pictures
-(
-    id                 INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
-    curricula_vitae_id INTEGER NOT NULL,
-    picture_url        CHARACTER VARYING(2083) UNIQUE,
-    CONSTRAINT pk_pictures PRIMARY KEY (id),
-    CONSTRAINT uc_pictures UNIQUE (picture_url)
-);
-
 ALTER TABLE public.curricula_vitaes
     ADD FOREIGN KEY (social_media_id) REFERENCES public.social_medias (id);
 
-ALTER TABLE public.jobseekers
-    ADD FOREIGN KEY (curricula_vitae_id) REFERENCES public.curricula_vitaes (id);
+ALTER TABLE public.curricula_vitaes
+    ADD FOREIGN KEY (jobseeker_id) REFERENCES public.jobseekers (user_id);
 
 ALTER TABLE public.educations
     ADD FOREIGN KEY (curricula_vitae_id) REFERENCES public.curricula_vitaes (id);
@@ -209,7 +202,4 @@ ALTER TABLE public.job_experiences
     ADD FOREIGN KEY (curricula_vitae_id) REFERENCES public.curricula_vitaes (id);
 
 ALTER TABLE public.programming_languages
-    ADD FOREIGN KEY (curricula_vitae_id) REFERENCES public.curricula_vitaes (id);
-
-ALTER TABLE public.pictures
     ADD FOREIGN KEY (curricula_vitae_id) REFERENCES public.curricula_vitaes (id);

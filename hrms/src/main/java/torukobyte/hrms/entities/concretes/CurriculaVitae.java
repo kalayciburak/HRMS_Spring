@@ -1,6 +1,5 @@
 package torukobyte.hrms.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,31 +24,26 @@ public class CurriculaVitae {
     @Column(name = "cover_letter")
     private String coverLetter;
 
+    @Column(name = "picture_url")
+    private String pictureUrl;
+
     @ManyToOne()
     @JoinColumn(name = "social_media_id")
     private SocialMedia socialMedia;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "curriculaVitae")
-    private List<JobSeeker> jobSeekers;
+    @ManyToOne()
+    @JoinColumn(name = "jobseeker_id")
+    private JobSeeker jobSeeker;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "curriculaVitae")
     private List<Education> educations;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "curriculaVitae")
     private List<JobExperience> jobExperiences;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "curriculaVitae")
     private List<JobSeekerLanguage> jobSeekerLanguages;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "curriculaVitae")
-    private List<Picture> pictures;
-
-    @JsonIgnore
     @OneToMany(mappedBy = "curriculaVitae")
     private List<ProgrammingLanguage> programmingLanguages;
 }

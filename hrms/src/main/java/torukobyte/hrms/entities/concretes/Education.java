@@ -1,5 +1,6 @@
 package torukobyte.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "educations")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "curriculaVitae"})
 public class Education {
 
     @Id
@@ -40,5 +42,5 @@ public class Education {
 
     @ManyToOne()
     @JoinColumn(name = "department_id")
-    private Derpatment derpatment;
+    private Department department;
 }

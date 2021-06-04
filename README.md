@@ -66,6 +66,10 @@
 
 ### <span style="color:#FF0048FF;">Req 11 : İş verenler sistemdeki bir ilanı kapatabilmelidir.</span>
 
+### <span style="color:#FF0048FF;">Req 12: Adaylar sisteme CV girişi yapabilmelidir.</span>
+
+### <span style="color:#FF0048FF;">Req 13 : Bir adaya ait tüm CV bilgisi görüntülenebilmelidir.</span>
+
 ### <span style="color:#b453ff;">Kurumsal Mimari</span>
 
 [comment]: <> (![mm]&#40;https://user-images.githubusercontent.com/61664693/117733028-8a49d680-b1f9-11eb-9e88-d4950a59ca08.png&#41;)

@@ -1,5 +1,7 @@
 package torukobyte.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
@@ -16,6 +19,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "jobseekers", uniqueConstraints = {@UniqueConstraint(columnNames = {"identity_number"})})
 @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "curriculaVitaes"})
 public class JobSeeker extends User {
 
     @Column(name = "first_name")
@@ -34,9 +38,7 @@ public class JobSeeker extends User {
     @NotNull
     private LocalDate birthDate;
 
-    @ManyToOne()
-    @JoinColumn(name = "curricula_vitae_id")
-    private CurriculaVitae curriculaVitae;
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "jobSeeker")
+    private List<CurriculaVitae> curriculaVitaes;
 }
-

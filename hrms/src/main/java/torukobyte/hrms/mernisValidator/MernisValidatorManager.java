@@ -1,11 +1,11 @@
-package torukobyte.hrms.mernisService;
+package torukobyte.hrms.mernisValidator;
 
 import org.springframework.stereotype.Service;
 import torukobyte.hrms.core.services.MernisCheckService;
 import torukobyte.hrms.entities.concretes.JobSeeker;
 
 @Service
-public class MernisService implements MernisCheckService {
+public class MernisValidatorManager implements MernisCheckService {
 
     @Override
     public boolean isMernis(JobSeeker jobSeeker) {

@@ -1,5 +1,5 @@
-<h3>Database created with <a src="www.github.com/8CA5F">Emin Ümüt Erarslan</a></h3>
+<b>Database created with <a src="www.github.com/8CA5F">Emin Ümüt Erarslan</a></b>
 
 # Database Diagram
 
-![hrmsDatabase](https://user-images.githubusercontent.com/61664693/120513308-d0e3b880-c3d4-11eb-837d-b378069ea46a.png)
+![hrmsDatabase](https://user-images.githubusercontent.com/61664693/120834463-b5f77c80-c56b-11eb-927b-ad40efabcbe3.png)

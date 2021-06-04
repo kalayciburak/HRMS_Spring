@@ -20,12 +20,12 @@ public class JobSeekersController {
         this.jobSeekerService = jobSeekerService;
     }
 
-    @GetMapping("/getjobseekers")
+    @GetMapping("/getJobseekers")
     public DataResult<List<JobSeeker>> getJobSeekers() {
         return this.jobSeekerService.getJobSeekers();
     }
 
-    @PostMapping("/addjobseeker")
+    @PostMapping("/addJobseeker")
     public Result addJobSeeker(@RequestBody JobSeeker jobSeeker) {
         return this.jobSeekerService.addJobSeeker(jobSeeker);
     }

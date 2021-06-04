@@ -1,5 +1,6 @@
 package torukobyte.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "job_experiences")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "curriculaVitae"})
+
 public class JobExperience {
 
     @Id

@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "departments")
-public class Derpatment {
+public class Department {
 
     @Id
     @Column(name = "id")
@@ -26,6 +26,6 @@ public class Derpatment {
     private String departmentName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "derpatment")
+    @OneToMany(mappedBy = "department")
     private List<Education> educations;
 }
