@@ -25,7 +25,7 @@ public class CurriculaVitae {
     private String coverLetter;
 
     @Column(name = "picture_url")
-    private String pictureUrl;
+    private String pictureUrl = "https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png";
 
     @ManyToOne()
     @JoinColumn(name = "social_media_id")
@@ -45,5 +45,5 @@ public class CurriculaVitae {
     private List<JobSeekerLanguage> jobSeekerLanguages;
 
     @OneToMany(mappedBy = "curriculaVitae")
-    private List<ProgrammingLanguage> programmingLanguages;
+    private List<Technologie> technologies;
 }

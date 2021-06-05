@@ -1,5 +1,6 @@
 package torukobyte.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "jobseeker_languages")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "curriculaVitae"})
 public class JobSeekerLanguage {
 
     @Id

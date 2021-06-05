@@ -12,10 +12,10 @@ import javax.validation.constraints.NotNull;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "programming_languages")
+@Table(name = "technologies")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "curriculaVitae"})
 
-public class ProgrammingLanguage {
+public class Technologie {
 
     @Id
     @Column(name = "id")
@@ -23,7 +23,7 @@ public class ProgrammingLanguage {
     @NotNull
     private int id;
 
-    @Column(name = "pl_name")
+    @Column(name = "technologies")
     private String plName;
 
     @ManyToOne()
