@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/jobexperiences")
+@CrossOrigin
 public class JobExperiencesController {
 
     private final JobExperienceService jobExperienceService;

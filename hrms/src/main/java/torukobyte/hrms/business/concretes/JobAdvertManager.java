@@ -5,17 +5,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import torukobyte.hrms.business.abstracts.JobAdvertService;
 import torukobyte.hrms.core.utilities.results.*;
-import torukobyte.hrms.dataAccess.abstracts.JobAdvertsDao;
+import torukobyte.hrms.dataAccess.abstracts.JobAdvertDao;
 import torukobyte.hrms.entities.concretes.JobAdvert;
 
 import java.util.List;
 
 @Service
 public class JobAdvertManager implements JobAdvertService {
-    private final JobAdvertsDao jobAdvertsDao;
+    private final JobAdvertDao jobAdvertsDao;
 
     @Autowired
-    public JobAdvertManager(JobAdvertsDao jobAdvertsDao) {
+    public JobAdvertManager(JobAdvertDao jobAdvertsDao) {
         this.jobAdvertsDao = jobAdvertsDao;
     }
 
@@ -40,7 +40,7 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
-    public DataResult<List<JobAdvert>> getActiveJobAdvertsForEmployer(String companyName) {
+    public DataResult<List<JobAdvert>> getJobAdvertByCompanyName(String companyName) {
         if ((long) this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndEmployer_CompanyName(companyName).size() > 0) {
             return new SuccessDataResult<>(this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndEmployer_CompanyName(
                     companyName), "Success: Şirket'e ait tüm ilanlar listelendi!");
@@ -66,6 +66,17 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
+    public DataResult<JobAdvert> getJobAdvertById(int jobAdvertId) {
+        if (this.jobAdvertsDao.getJobAdvertById(jobAdvertId) == null) {
+            return new WarningDataResult<>("Warning: Kayıtlı İş İlanı bulunamadı!");
+        } else {
+            return new SuccessDataResult<>(
+                    this.jobAdvertsDao.getJobAdvertById(jobAdvertId),
+                    "Success: İş İlanı listelendi!");
+        }
+    }
+
+    @Override
     public Result deactiveJobAdvert(int jobAdvertId) {
         this.jobAdvertsDao.deactiveJobAdvert(jobAdvertId);
         return new SuccessResult("Success: İlan başarıyla inaktif edildi!");
@@ -75,5 +86,11 @@ public class JobAdvertManager implements JobAdvertService {
     public Result addJobAdvert(JobAdvert jobAdvert) {
         this.jobAdvertsDao.save(jobAdvert);
         return new SuccessResult("Success: İlan sisteme eklendi!");
+    }
+
+    @Override
+    public Result deleteJobAdvertById(int jobAdvertId) {
+        this.jobAdvertsDao.deleteJobAdvertById(jobAdvertId);
+        return new SuccessResult("Success: İş ilanı silindi!");
     }
 }

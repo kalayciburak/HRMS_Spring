@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/jobadverts")
+@CrossOrigin
 public class JobAdvertsController {
     private final JobAdvertService jobAdvertService;
 
@@ -29,14 +30,24 @@ public class JobAdvertsController {
         return this.jobAdvertService.getActiveJobAdverts();
     }
 
-    @GetMapping("/getJobAdvertsForCompanyName")
-    public DataResult<List<JobAdvert>> getActiveJobAdvertsForEmployer(String companyName) {
-        return this.jobAdvertService.getActiveJobAdvertsForEmployer(companyName);
+    @GetMapping("/getJobAdvertByCompanyName")
+    public DataResult<List<JobAdvert>> getJobAdvertByCompanyName(String companyName) {
+        return this.jobAdvertService.getJobAdvertByCompanyName(companyName);
     }
 
     @GetMapping("/getActiveJobAdvertsSorted")
     public DataResult<List<JobAdvert>> findAllByIsActiveTrueSorted() {
         return this.jobAdvertService.findAllByIsActiveTrue();
+    }
+
+    @GetMapping("/getJobAdvertById")
+    public DataResult<JobAdvert> getJobAdvertById(int jobAdvertId) {
+        return this.jobAdvertService.getJobAdvertById(jobAdvertId);
+    }
+
+    @DeleteMapping("/deleteJobAdvertById")
+    public Result deleteJobAdvertById(@RequestParam int jobAdvertId) {
+        return this.jobAdvertService.deleteJobAdvertById(jobAdvertId);
     }
 
     @PostMapping("/addJobadvert")

@@ -26,7 +26,7 @@ public class Technologie {
     @Column(name = "technologies")
     private String plName;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "curricula_vitae_id")
     private CurriculaVitae curriculaVitae;
 }

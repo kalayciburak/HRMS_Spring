@@ -25,7 +25,6 @@ public class User {
 
     @NotNull
     @Column(name = "email")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String email;
 
     @NotNull

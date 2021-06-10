@@ -56,4 +56,21 @@ public class EmployerManager implements EmployerService {
             }
         }
     }
+
+    @Override
+    public Result deleteEmployerById(int employerId) {
+        this.employerDao.deleteEmployerById(employerId);
+        return new SuccessResult("Success: Şirket silindi!");
+    }
+
+    @Override
+    public DataResult<Employer> getEmployerById(int employerId) {
+        if (this.employerDao.getEmployerById(employerId) == null) {
+            return new WarningDataResult<>("Warning: Kayıtlı Şirket bulunamadı!");
+        } else {
+            return new SuccessDataResult<>(
+                    this.employerDao.getEmployerById(employerId),
+                    "Success: Şirket başarıyla listelendi!");
+        }
+    }
 }

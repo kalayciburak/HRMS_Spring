@@ -54,5 +54,22 @@ public class JobSeekerManager implements JobSeekerService {
         }
     }
 
+    @Override
+    public Result deleteJobSeekerById(int jobSeekerId) {
+        this.jobSeekerDao.deleteJobSeekerById(jobSeekerId);
+        return new SuccessResult("Success: İş arayan silindi!");
+    }
+
+    @Override
+    public DataResult<JobSeeker> getJobSeekerById(int jobSeekerId) {
+        if (this.jobSeekerDao.getJobSeekerById(jobSeekerId) == null) {
+            return new WarningDataResult<>("Warning: Kayıtlı İş Arayan bulunamadı!");
+        } else {
+            return new SuccessDataResult<>(
+                    this.jobSeekerDao.getJobSeekerById(jobSeekerId),
+                    "Success: İş Arayan listelendi!");
+        }
+    }
+
 
 }

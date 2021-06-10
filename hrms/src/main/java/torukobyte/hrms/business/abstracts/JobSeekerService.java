@@ -11,4 +11,8 @@ public interface JobSeekerService {
 
     Result addJobSeeker(JobSeeker jobSeeker);
 
+    Result deleteJobSeekerById(int jobSeekerId);
+
+    DataResult<JobSeeker> getJobSeekerById(int jobSeekerId);
+
 }

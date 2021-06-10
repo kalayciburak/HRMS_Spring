@@ -26,12 +26,12 @@ public class Employer extends User {
 
     @Column(name = "website")
     @NotNull
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String website;
 
     @Column(name = "phone_number")
     @NotNull
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String phoneNumber;
 
     @NotNull

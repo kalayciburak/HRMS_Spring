@@ -27,12 +27,11 @@ public class JobAdvert {
 
     @Column(name = "description")
     @NotNull
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String description;
 
     @Column(name = "salary")
     @NotNull
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private int salary;
 
     @Column(name = "position_count")

@@ -9,7 +9,7 @@ import torukobyte.hrms.entities.concretes.JobAdvert;
 import javax.transaction.Transactional;
 import java.util.List;
 
-public interface JobAdvertsDao extends JpaRepository<JobAdvert, Integer> {
+public interface JobAdvertDao extends JpaRepository<JobAdvert, Integer> {
     List<JobAdvert> findAllByIsActiveTrue();
 
     List<JobAdvert> getJobAdvertByIsActiveTrueAndEmployer_CompanyName(String companyName);
@@ -20,4 +20,9 @@ public interface JobAdvertsDao extends JpaRepository<JobAdvert, Integer> {
     @Modifying
     @Query("Update JobAdvert set isActive = false where id =:jobAdvertId")
     void deactiveJobAdvert(int jobAdvertId);
+
+    JobAdvert getJobAdvertById(int id);
+
+    @Transactional
+    void deleteJobAdvertById(int id);
 }

@@ -32,7 +32,7 @@ public class Education {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "curricula_vitae_id")
     private CurriculaVitae curriculaVitae;
 

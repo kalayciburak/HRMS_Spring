@@ -27,23 +27,23 @@ public class CurriculaVitae {
     @Column(name = "picture_url")
     private String pictureUrl = "https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png";
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "social_media_id")
     private SocialMedia socialMedia;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "jobseeker_id")
     private JobSeeker jobSeeker;
 
-    @OneToMany(mappedBy = "curriculaVitae")
+    @OneToMany(mappedBy = "curriculaVitae", cascade = CascadeType.ALL)
     private List<Education> educations;
 
-    @OneToMany(mappedBy = "curriculaVitae")
+    @OneToMany(mappedBy = "curriculaVitae", cascade = CascadeType.ALL)
     private List<JobExperience> jobExperiences;
 
-    @OneToMany(mappedBy = "curriculaVitae")
+    @OneToMany(mappedBy = "curriculaVitae", cascade = CascadeType.ALL)
     private List<JobSeekerLanguage> jobSeekerLanguages;
 
-    @OneToMany(mappedBy = "curriculaVitae")
+    @OneToMany(mappedBy = "curriculaVitae", cascade = CascadeType.ALL)
     private List<Technologie> technologies;
 }

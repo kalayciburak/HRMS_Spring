@@ -39,6 +39,6 @@ public class JobSeeker extends User {
     private LocalDate birthDate;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "jobSeeker")
+    @OneToMany(mappedBy = "jobSeeker", cascade = CascadeType.ALL)
     private List<CurriculaVitae> curriculaVitaes;
 }

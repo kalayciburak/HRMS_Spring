@@ -11,12 +11,16 @@ public interface JobAdvertService {
 
     DataResult<List<JobAdvert>> getActiveJobAdverts();
 
-    DataResult<List<JobAdvert>> getActiveJobAdvertsForEmployer(String companyName);
+    DataResult<List<JobAdvert>> getJobAdvertByCompanyName(String companyName);
 
     DataResult<List<JobAdvert>> findAllByIsActiveTrue();
+
+    DataResult<JobAdvert> getJobAdvertById(int jobAdvertId);
 
     Result deactiveJobAdvert(int jobAdvertId);
 
     Result addJobAdvert(JobAdvert jobAdvert);
+
+    Result deleteJobAdvertById(int jobAdvertId);
 
 }

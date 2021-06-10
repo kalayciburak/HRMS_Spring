@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/languages")
+@CrossOrigin
 public class LanguagesController {
 
     private final LanguageService languageService;
