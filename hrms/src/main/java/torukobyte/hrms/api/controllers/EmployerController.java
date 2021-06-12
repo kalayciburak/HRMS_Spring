@@ -2,12 +2,14 @@ package torukobyte.hrms.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import torukobyte.hrms.business.abstracts.EmployerService;
 import torukobyte.hrms.business.abstracts.JobAdvertService;
 import torukobyte.hrms.core.utilities.results.DataResult;
 import torukobyte.hrms.core.utilities.results.Result;
 import torukobyte.hrms.entities.concretes.Employer;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -45,8 +47,13 @@ public class EmployerController {
         return this.employerService.addEmployer(employer);
     }
 
-    @PostMapping("/updateIsActive")
-    public Result deactiveJobAdvert(@RequestParam("job_adverts_id") int jobAdvertId) {
-        return this.jobAdvertService.deactiveJobAdvert(jobAdvertId);
+    @PostMapping("/changeIsActive")
+    public Result changeIsActive(@RequestParam boolean active, int jobAdvertId) {
+        return this.jobAdvertService.changeIsActive(active, jobAdvertId);
+    }
+
+    @PostMapping("/addPicture")
+    public Result addPicture(int employerId, MultipartFile file) throws IOException {
+        return this.employerService.uploadPicture(employerId, file);
     }
 }

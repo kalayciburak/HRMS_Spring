@@ -25,9 +25,9 @@ public class EducationsController {
         return this.educationService.getAllEducations();
     }
 
-    @GetMapping("/getSortedEducations")
-    public DataResult<List<Education>> getSortedJobExperiences(@RequestParam int cvId) {
-        return this.educationService.findAllSorted(cvId);
+    @GetMapping("/getEducationsByCvId")
+    public DataResult<List<Education>> getEducationsByCvId(@RequestParam int cvId) {
+        return this.educationService.getEducationsByCvId(cvId);
     }
 
     @PostMapping("/addEducation")

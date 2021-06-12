@@ -40,6 +40,11 @@ public class JobAdvertsController {
         return this.jobAdvertService.findAllByIsActiveTrue();
     }
 
+    @GetMapping("/getJobAdvertByIsActiveTrueAndIsConfirmedTrue")
+    public DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrue() {
+        return this.jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrue();
+    }
+
     @GetMapping("/getJobAdvertById")
     public DataResult<JobAdvert> getJobAdvertById(int jobAdvertId) {
         return this.jobAdvertService.getJobAdvertById(jobAdvertId);

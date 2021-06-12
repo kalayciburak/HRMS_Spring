@@ -21,9 +21,9 @@ public class JobExperiencesController {
         this.jobExperienceService = jobExperienceService;
     }
 
-    @GetMapping("/getSortedJobExperiences")
-    public DataResult<List<JobExperience>> getSortedJobExperiences(@RequestParam int cvId) {
-        return this.jobExperienceService.findAllSorted(cvId);
+    @GetMapping("/getJobExperienceByCvId")
+    public DataResult<List<JobExperience>> getJobExperienceByCvId(@RequestParam int cvId) {
+        return this.jobExperienceService.getJobExperienceByCvId(cvId);
     }
 
     @PostMapping("/addJobExperience")

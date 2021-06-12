@@ -27,7 +27,7 @@ public class JobExperienceManager implements JobExperienceService {
     }
 
     @Override
-    public DataResult<List<JobExperience>> findAllSorted(int id) {
+    public DataResult<List<JobExperience>> getJobExperienceByCvId(int id) {
         Sort sort = Sort.by(Sort.Direction.DESC, "endDate");
         if (this.jobExperienceDao.getJobExperienceEndDateByCurriculaVitaeId(id, sort).isEmpty()) {
             return new WarningDataResult<>("Warning: Listelenecek iş tecrübesi bulunamadı!");

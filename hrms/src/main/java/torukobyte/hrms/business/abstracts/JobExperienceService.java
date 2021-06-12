@@ -9,5 +9,5 @@ import java.util.List;
 public interface JobExperienceService {
     Result addJobExperience(JobExperience jobExperience);
 
-    DataResult<List<JobExperience>> findAllSorted(int id);
+    DataResult<List<JobExperience>> getJobExperienceByCvId(int id);
 }

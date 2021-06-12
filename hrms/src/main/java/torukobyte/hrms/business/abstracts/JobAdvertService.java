@@ -15,9 +15,13 @@ public interface JobAdvertService {
 
     DataResult<List<JobAdvert>> findAllByIsActiveTrue();
 
+    DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrue();
+
     DataResult<JobAdvert> getJobAdvertById(int jobAdvertId);
 
-    Result deactiveJobAdvert(int jobAdvertId);
+    Result changeIsActive(boolean active, int jobAdvertId);
+
+    Result changeIsConfirmed(boolean confirm, int jobAdvertId);
 
     Result addJobAdvert(JobAdvert jobAdvert);
 

@@ -11,5 +11,5 @@ public interface EducationService {
 
     DataResult<List<Education>> getAllEducations();
 
-    DataResult<List<Education>> findAllSorted(int id);
+    DataResult<List<Education>> getEducationsByCvId(int id);
 }

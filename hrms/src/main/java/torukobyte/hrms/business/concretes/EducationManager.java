@@ -38,7 +38,7 @@ public class EducationManager implements EducationService {
     }
 
     @Override
-    public DataResult<List<Education>> findAllSorted(int id) {
+    public DataResult<List<Education>> getEducationsByCvId(int id) {
         Sort sort = Sort.by(Sort.Direction.DESC, "endDate");
         if (this.educationDao.getEducationEndDateByCurriculaVitaeId(id, sort).isEmpty()) {
             return new WarningDataResult<>("Warning: Listelenecek eğitim bilgisi bulunamadı!");

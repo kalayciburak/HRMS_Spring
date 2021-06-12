@@ -34,6 +34,9 @@ public class Employer extends User {
 //    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String phoneNumber;
 
+    @Column(name = "picture_url")
+    private String pictureUrl = "https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png";
+
     @NotNull
     @Transient
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

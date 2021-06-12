@@ -2,21 +2,27 @@ package torukobyte.hrms.business.concretes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import torukobyte.hrms.business.abstracts.EmployerService;
+import torukobyte.hrms.core.helpers.CloudinaryService;
 import torukobyte.hrms.core.utilities.EmailValidator;
 import torukobyte.hrms.core.utilities.results.*;
 import torukobyte.hrms.dataAccess.abstracts.EmployerDao;
 import torukobyte.hrms.entities.concretes.Employer;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
 public class EmployerManager implements EmployerService {
     private final EmployerDao employerDao;
 
+    private final CloudinaryService cloudinaryService;
+
     @Autowired
-    public EmployerManager(EmployerDao employerDao) {
+    public EmployerManager(EmployerDao employerDao, CloudinaryService cloudinaryService) {
         this.employerDao = employerDao;
+        this.cloudinaryService = cloudinaryService;
     }
 
     @Override
@@ -72,5 +78,17 @@ public class EmployerManager implements EmployerService {
                     this.employerDao.getEmployerById(employerId),
                     "Success: Şirket başarıyla listelendi!");
         }
+    }
+
+    @Override
+    public Result uploadPicture(int employerId, MultipartFile file) throws IOException {
+        var result = this.cloudinaryService.addPicture(file);
+        var url = result.getData().get("url");
+
+        Employer ref = this.employerDao.getOne(employerId);
+        ref.setPictureUrl(url.toString());
+        this.employerDao.save(ref);
+
+        return new SuccessResult("Success: Resim ekleme işlemi başarılı!");
     }
 }

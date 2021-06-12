@@ -66,6 +66,20 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
+    public DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrue() {
+        Sort sort = Sort.by(Sort.Direction.DESC, "airdate");
+        if (this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(sort).size() > 0) {
+            return new SuccessDataResult<>(
+                    this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(sort),
+                    "Success: Onaylı ve Aktif tüm iş ilanları yayınlanma tarihine göre listelendi!");
+
+        }
+        return new WarningDataResult<>(
+                this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(sort),
+                "Warning: Onaylı ve Aktif iş ilanı bulunamadı!");
+    }
+
+    @Override
     public DataResult<JobAdvert> getJobAdvertById(int jobAdvertId) {
         if (this.jobAdvertsDao.getJobAdvertById(jobAdvertId) == null) {
             return new WarningDataResult<>("Warning: Kayıtlı İş İlanı bulunamadı!");
@@ -77,9 +91,15 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
-    public Result deactiveJobAdvert(int jobAdvertId) {
-        this.jobAdvertsDao.deactiveJobAdvert(jobAdvertId);
-        return new SuccessResult("Success: İlan başarıyla inaktif edildi!");
+    public Result changeIsActive(boolean active, int jobAdvertId) {
+        this.jobAdvertsDao.changeIsActive(active, jobAdvertId);
+        return new SuccessResult("Success: İlan aktiflik durumu değiştirildi!");
+    }
+
+    @Override
+    public Result changeIsConfirmed(boolean confirm, int jobAdvertId) {
+        this.jobAdvertsDao.changeIsConfirmed(confirm, jobAdvertId);
+        return new SuccessResult("Success: İlan onay durumu değiştirildi!");
     }
 
     @Override

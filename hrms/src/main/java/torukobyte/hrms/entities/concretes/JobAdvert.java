@@ -47,10 +47,23 @@ public class JobAdvert {
     //düzenlenebilir gibi görünsede auto değer atıyor.
     private LocalDateTime airdate = LocalDateTime.now();
 
+    @Column(name = "uptime")
+    @NotNull
+    private String upTime;
+
+    @Column(name = "type_of_employment")
+    @NotNull
+    private String typeOfEmployment;
+
     @Column(name = "is_active")
     @NotNull
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private boolean isActive = true;
+
+    @Column(name = "is_confirmed")
+    @NotNull
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private boolean isConfirmed = false;
 
     @ManyToOne()
     @JoinColumn(name = "employer_id")
