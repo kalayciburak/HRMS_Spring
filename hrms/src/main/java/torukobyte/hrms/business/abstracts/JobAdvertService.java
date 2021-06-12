@@ -9,6 +9,8 @@ import java.util.List;
 public interface JobAdvertService {
     DataResult<List<JobAdvert>> getJobAdverts();
 
+    DataResult<List<JobAdvert>> getSortedJobAdverts();
+
     DataResult<List<JobAdvert>> getActiveJobAdverts();
 
     DataResult<List<JobAdvert>> getJobAdvertByCompanyName(String companyName);

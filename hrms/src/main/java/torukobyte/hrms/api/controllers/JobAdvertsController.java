@@ -25,6 +25,11 @@ public class JobAdvertsController {
         return this.jobAdvertService.getJobAdverts();
     }
 
+    @GetMapping("/getSortedJobAdverts")
+    public DataResult<List<JobAdvert>> getSortedJobAdverts() {
+        return this.jobAdvertService.getSortedJobAdverts();
+    }
+
     @GetMapping("/getActiveJobAdverts")
     public DataResult<List<JobAdvert>> getActiveJobAdverts() {
         return this.jobAdvertService.getActiveJobAdverts();
