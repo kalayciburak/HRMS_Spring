@@ -35,7 +35,7 @@ public class Employer extends User {
     private String phoneNumber;
 
     @Column(name = "picture_url")
-    private String pictureUrl = "https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png";
+    private String pictureUrl = "https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png";
 
     @NotNull
     @Transient

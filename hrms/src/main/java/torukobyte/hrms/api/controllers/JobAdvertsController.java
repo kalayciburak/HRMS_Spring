@@ -36,13 +36,13 @@ public class JobAdvertsController {
     }
 
     @GetMapping("/getActiveJobAdvertsSorted")
-    public DataResult<List<JobAdvert>> findAllByIsActiveTrueSorted() {
-        return this.jobAdvertService.findAllByIsActiveTrue();
+    public DataResult<List<JobAdvert>> findAllByIsActiveTrueSorted(@RequestParam boolean isDesc) {
+        return this.jobAdvertService.findAllByIsActiveTrue(isDesc);
     }
 
     @GetMapping("/getJobAdvertByIsActiveTrueAndIsConfirmedTrue")
-    public DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrue() {
-        return this.jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrue();
+    public DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrue(@RequestParam boolean isDesc) {
+        return this.jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(isDesc);
     }
 
     @GetMapping("/getJobAdvertById")

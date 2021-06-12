@@ -13,9 +13,9 @@ public interface JobAdvertService {
 
     DataResult<List<JobAdvert>> getJobAdvertByCompanyName(String companyName);
 
-    DataResult<List<JobAdvert>> findAllByIsActiveTrue();
+    DataResult<List<JobAdvert>> findAllByIsActiveTrue(boolean isDesc);
 
-    DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrue();
+    DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrue(boolean isDesc);
 
     DataResult<JobAdvert> getJobAdvertById(int jobAdvertId);
 

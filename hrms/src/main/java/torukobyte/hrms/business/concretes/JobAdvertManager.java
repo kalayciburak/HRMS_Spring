@@ -53,8 +53,14 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
-    public DataResult<List<JobAdvert>> findAllByIsActiveTrue() {
-        Sort sort = Sort.by(Sort.Direction.DESC, "airdate");
+    public DataResult<List<JobAdvert>> findAllByIsActiveTrue(boolean isDesc) {
+        Sort sort;
+        if (isDesc) {
+            sort = Sort.by(Sort.Direction.DESC, "airdate");
+        } else {
+            sort = Sort.by(Sort.Direction.ASC, "airdate");
+
+        }
         if ((long) this.jobAdvertsDao.findAllByIsActiveTrue(sort).size() > 0) {
             return new SuccessDataResult<>(
                     this.jobAdvertsDao.findAllByIsActiveTrue(sort),
@@ -66,8 +72,14 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
-    public DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrue() {
-        Sort sort = Sort.by(Sort.Direction.DESC, "airdate");
+    public DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrue(boolean isDesc) {
+        Sort sort;
+        if (isDesc) {
+            sort = Sort.by(Sort.Direction.DESC, "airdate");
+        } else {
+            sort = Sort.by(Sort.Direction.ASC, "airdate");
+
+        }
         if (this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(sort).size() > 0) {
             return new SuccessDataResult<>(
                     this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(sort),
