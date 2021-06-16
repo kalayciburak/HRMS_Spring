@@ -21,6 +21,6 @@ public class JobSeekerLanguageManager implements JobSeekerLanguageService {
     @Override
     public Result addJobSeekerLanguage(JobSeekerLanguage jobSeekerLanguage) {
         this.jobSeekerLanguageDao.save(jobSeekerLanguage);
-        return new SuccessResult("Cv'ye başarıyla yabancı dil bilgisi eklendi!");
+        return new SuccessResult("Success: Cv'ye başarıyla yabancı dil bilgisi eklendi!");
     }
 }

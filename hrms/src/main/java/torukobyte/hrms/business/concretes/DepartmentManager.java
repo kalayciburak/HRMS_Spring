@@ -24,15 +24,15 @@ public class DepartmentManager implements DepartmentService {
     @Override
     public Result addDepartment(Department department) {
         this.departmentDao.save(department);
-        return new SuccessResult("Bölüm başarıyla eklendi!");
+        return new SuccessResult("Success: Bölüm başarıyla eklendi!");
     }
 
     @Override
     public DataResult<List<Department>> getAllDepartment() {
         if (this.departmentDao.findAll().isEmpty()) {
-            return new WarningDataResult<>("Kayıtlı bölüm bulunamadı!");
+            return new WarningDataResult<>("Warning: Kayıtlı bölüm bulunamadı!");
         } else {
-            return new DataResult<>(this.departmentDao.findAll(), "Bölümler başarıyla listelendi!");
+            return new DataResult<>(this.departmentDao.findAll(), "Success: Bölümler başarıyla listelendi!");
         }
     }
 }

@@ -20,7 +20,7 @@ public class SystemPersonelManager implements SystemPersonelService {
     @Override
     public DataResult<List<SystemPersonel>> getSystemPersonels() {
         if ((long) this.systemPeronelDao.findAll().size() > 0) {
-            return new SuccessDataResult<>(this.systemPeronelDao.findAll(), "Personeller listelendi!");
+            return new SuccessDataResult<>(this.systemPeronelDao.findAll(), "Success: Personeller listelendi!");
         }
 
         return new WarningDataResult<>(this.systemPeronelDao.findAll(), "Herhangi bir personel bulunamadı!");
@@ -30,14 +30,14 @@ public class SystemPersonelManager implements SystemPersonelService {
     public Result addSystemPersonel(SystemPersonel systemPersonel) {
         try {
             this.systemPeronelDao.save(systemPersonel);
-            return new SuccessResult("Personel başarıyla eklendi!");
+            return new SuccessResult("Success: Personel başarıyla eklendi!");
         } catch (Exception e) {
             if (e.getMessage()
                  .contains("[uc_users_email]")) {
-                return new ErrorResult("Eposta sistemde mevcut, lütfen başka bir eposta adresi giriniz!");
+                return new ErrorResult("Error: Eposta sistemde mevcut, lütfen başka bir eposta adresi giriniz!");
             } else {
                 return new ErrorResult(
-                        "Kimlik numarası sistem de kayıtlı, lütfen başka bir kimlik numarası giriniz!");
+                        "Error: Kullanıcı adı sistem de kayıtlı, lütfen başka bir kullanıcı adı giriniz!");
             }
         }
     }
@@ -45,11 +45,11 @@ public class SystemPersonelManager implements SystemPersonelService {
     @Override
     public DataResult<SystemPersonel> getSystemPersonelById(int systemPersonelId) {
         if (this.systemPeronelDao.getSystemPersonelById(systemPersonelId) == null) {
-            return new WarningDataResult<>("Kayıtlı Personel bulunamadı!");
+            return new WarningDataResult<>("Warning: Kayıtlı Personel bulunamadı!");
         } else {
             return new SuccessDataResult<>(
                     this.systemPeronelDao.getSystemPersonelById(systemPersonelId),
-                    "Personel listelendi!");
+                    "Success: Personel listelendi!");
         }
 
     }
@@ -57,6 +57,6 @@ public class SystemPersonelManager implements SystemPersonelService {
     @Override
     public Result deleteSystemPersonelById(int systemPersonelId) {
         this.systemPeronelDao.deleteSystemPersonelById(systemPersonelId);
-        return new SuccessResult("Personel silindi!");
+        return new SuccessResult("Success: Personel silindi!");
     }
 }

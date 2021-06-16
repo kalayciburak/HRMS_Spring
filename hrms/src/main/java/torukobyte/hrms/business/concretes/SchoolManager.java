@@ -21,15 +21,15 @@ public class SchoolManager implements SchoolService {
     @Override
     public Result addSchool(School school) {
         this.schoolDao.save(school);
-        return new SuccessResult("Okul başarıyla eklendi!");
+        return new SuccessResult("Success: Okul başarıyla eklendi!");
     }
 
     @Override
     public DataResult<List<School>> getAllSchool() {
         if (this.schoolDao.findAll().isEmpty()) {
-            return new WarningDataResult<>("Kayıtlı okul bulunamadı!");
+            return new WarningDataResult<>("Warning: Kayıtlı okul bulunamadı!");
         } else {
-            return new SuccessDataResult<>(this.schoolDao.findAll(), "Bütün okullar başarıyla listelendi!");
+            return new SuccessDataResult<>(this.schoolDao.findAll(), "Success: Bütün okullar başarıyla listelendi!");
         }
     }
 }

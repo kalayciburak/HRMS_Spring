@@ -23,18 +23,18 @@ public class JobExperienceManager implements JobExperienceService {
     @Override
     public Result addJobExperience(JobExperience jobExperience) {
         this.jobExperienceDao.save(jobExperience);
-        return new SuccessResult("Kariyer bilgisi başarıyla sisteme eklendi!");
+        return new SuccessResult("Success: Kariyer bilgisi başarıyla sisteme eklendi!");
     }
 
     @Override
     public DataResult<List<JobExperience>> getJobExperienceByCvId(int id) {
         Sort sort = Sort.by(Sort.Direction.DESC, "endDate");
         if (this.jobExperienceDao.getJobExperienceEndDateByCurriculaVitaeId(id, sort).isEmpty()) {
-            return new WarningDataResult<>("Listelenecek iş tecrübesi bulunamadı!");
+            return new WarningDataResult<>("Warning: Listelenecek iş tecrübesi bulunamadı!");
         } else {
             return new SuccessDataResult<>(
                     this.jobExperienceDao.getJobExperienceEndDateByCurriculaVitaeId(id, sort),
-                    "İş tecrübeleri başarıyla sıralanıp listelendi!");
+                    "Success: İş tecrübeleri başarıyla sıralanıp listelendi!");
         }
     }
 }
