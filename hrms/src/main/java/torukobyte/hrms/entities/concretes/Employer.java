@@ -1,7 +1,6 @@
 package torukobyte.hrms.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,10 +36,10 @@ public class Employer extends User {
     @Column(name = "picture_url")
     private String pictureUrl = "https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png";
 
-    @NotNull
+    /*@NotNull
     @Transient
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String confirmPassword;
+    private String confirmPassword;*/
 
     @JsonIgnore
     @OneToMany(mappedBy = "employer")

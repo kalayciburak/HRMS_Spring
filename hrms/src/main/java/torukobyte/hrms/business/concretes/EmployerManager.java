@@ -28,10 +28,10 @@ public class EmployerManager implements EmployerService {
     @Override
     public DataResult<List<Employer>> getEmployers() {
         if ((long) this.employerDao.findAll().size() > 0) {
-            return new SuccessDataResult<>(this.employerDao.findAll(), "Success: İş Verenler listelendi!");
+            return new SuccessDataResult<>(this.employerDao.findAll(), "İş Verenler listelendi!");
         }
 
-        return new WarningDataResult<>(this.employerDao.findAll(), "Warning: Herhangi bir iş veren bulunamadı!");
+        return new WarningDataResult<>(this.employerDao.findAll(), "Herhangi bir iş veren bulunamadı!");
     }
 
     @Override
@@ -43,22 +43,24 @@ public class EmployerManager implements EmployerService {
         String employerDomain = employerEmail[1];
         try {
             if (!EmailValidator.emailFormatController(employer.getEmail())) {
-                return new ErrorResult("Error: Mail formata uygun değil!");
+                return new ErrorResult("Mail formata uygun değil!");
+            } else if (!website.contains("www") || !website.contains(".")) {
+                return new ErrorResult("Web sitesi formatı uygun değil!");
             } else if (!employerDomain.equals(website)) {
-                return new ErrorResult("Error: Web sitesi ile email aynı domaine sahip değil!");
-            } else if (!employer.getPassword().equals(employer.getConfirmPassword())) {
-                return new ErrorResult("Error: Girmiş olduğunuz şifreler uyuşmuyor!");
-            } else {
+                return new ErrorResult("Web sitesi ile email aynı domaine sahip değil!");
+            } /*else if (!employer.getPassword().equals(employer.getConfirmPassword())) {
+                return new ErrorResult("Girmiş olduğunuz şifreler uyuşmuyor!");
+            } */ else {
                 this.employerDao.save(employer);
                 return new SuccessResult(
-                        "Success: İş veren kullanıcı sisteme eklendi, Doğrulama kodu email adresinize gönderildi!");
+                        "İş veren kullanıcı sisteme eklendi, Doğrulama kodu email adresinize gönderildi!");
             }
         } catch (Exception e) {
             if (e.getMessage()
                  .contains("[uc_users_email]")) {
-                return new ErrorResult("Error: Eposta sistemde mevcut, lütfen başka bir eposta adresi giriniz!");
+                return new ErrorResult("Eposta sistemde mevcut, lütfen başka bir eposta adresi giriniz!");
             } else {
-                return new ErrorResult("Error: Şirket adı sistem de kayıtlı, lütfen başka bir Şirket adı giriniz!");
+                return new ErrorResult("Şirket adı sistem de kayıtlı, lütfen başka bir Şirket adı giriniz!");
             }
         }
     }
@@ -66,17 +68,17 @@ public class EmployerManager implements EmployerService {
     @Override
     public Result deleteEmployerById(int employerId) {
         this.employerDao.deleteEmployerById(employerId);
-        return new SuccessResult("Success: Şirket silindi!");
+        return new SuccessResult("Şirket silindi!");
     }
 
     @Override
     public DataResult<Employer> getEmployerById(int employerId) {
         if (this.employerDao.getEmployerById(employerId) == null) {
-            return new WarningDataResult<>("Warning: Kayıtlı Şirket bulunamadı!");
+            return new WarningDataResult<>("Kayıtlı Şirket bulunamadı!");
         } else {
             return new SuccessDataResult<>(
                     this.employerDao.getEmployerById(employerId),
-                    "Success: Şirket başarıyla listelendi!");
+                    "Şirket başarıyla listelendi!");
         }
     }
 
@@ -89,6 +91,6 @@ public class EmployerManager implements EmployerService {
         ref.setPictureUrl(url.toString());
         this.employerDao.save(ref);
 
-        return new SuccessResult("Success: Resim ekleme işlemi başarılı!");
+        return new SuccessResult("Resim ekleme işlemi başarılı!");
     }
 }

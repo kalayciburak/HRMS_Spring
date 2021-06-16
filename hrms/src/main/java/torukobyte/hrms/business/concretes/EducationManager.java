@@ -23,17 +23,17 @@ public class EducationManager implements EducationService {
     @Override
     public Result addEducation(Education education) {
         this.educationDao.save(education);
-        return new SuccessResult("Success: Eğitim bilgileri başarıyla eklendi!");
+        return new SuccessResult("Eğitim bilgileri başarıyla eklendi!");
     }
 
     @Override
     public DataResult<List<Education>> getAllEducations() {
         if (this.educationDao.findAll().isEmpty()) {
-            return new WarningDataResult<>("Warning: Listelenecek bir eğitim bilgisi bulunamadı!");
+            return new WarningDataResult<>("Listelenecek bir eğitim bilgisi bulunamadı!");
         } else {
             return new SuccessDataResult<>(
                     this.educationDao.findAll(),
-                    "Success: Tüm eğitim bilgileri başarıyla listelendi!");
+                    "Tüm eğitim bilgileri başarıyla listelendi!");
         }
     }
 
@@ -41,11 +41,11 @@ public class EducationManager implements EducationService {
     public DataResult<List<Education>> getEducationsByCvId(int id) {
         Sort sort = Sort.by(Sort.Direction.DESC, "endDate");
         if (this.educationDao.getEducationEndDateByCurriculaVitaeId(id, sort).isEmpty()) {
-            return new WarningDataResult<>("Warning: Listelenecek eğitim bilgisi bulunamadı!");
+            return new WarningDataResult<>("Listelenecek eğitim bilgisi bulunamadı!");
         } else {
             return new SuccessDataResult<>(
                     this.educationDao.getEducationEndDateByCurriculaVitaeId(id, sort),
-                    "Success: Eğitim geçmişi başarıyla sıralanıp listelendi!");
+                    "Eğitim geçmişi başarıyla sıralanıp listelendi!");
         }
     }
 }

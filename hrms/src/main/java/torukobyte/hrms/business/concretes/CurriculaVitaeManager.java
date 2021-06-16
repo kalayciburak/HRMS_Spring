@@ -28,17 +28,17 @@ public class CurriculaVitaeManager implements CurriculaVitaeService {
     @Override
     public Result addCv(CurriculaVitae curriculaVitae) {
         this.curriculaVitaeDao.save(curriculaVitae);
-        return new SuccessResult("Success: Cv başarıyla eklendi!");
+        return new SuccessResult("Cv başarıyla eklendi!");
     }
 
 //    @Override
 //    public DataResult<List<JobseekerWithCurriculaVitaeDto>> getJobSeekerWithCurriculaVitae(int id) {
 //        if (this.curriculaVitaeDao.getJobSeekerWithCurriculaVitae(id).isEmpty()) {
-//            return new WarningDataResult<>("Warning: Kayıtlı Cv bulunamadı!");
+//            return new WarningDataResult<>("Kayıtlı Cv bulunamadı!");
 //        } else {
 //            return new SuccessDataResult<>(
 //                    this.curriculaVitaeDao.getJobSeekerWithCurriculaVitae(id),
-//                    "Success: Cv'ler başarıyla listelendi!");
+//                    "Cv'ler başarıyla listelendi!");
 //
 //        }
 //    }
@@ -46,11 +46,11 @@ public class CurriculaVitaeManager implements CurriculaVitaeService {
     @Override
     public DataResult<CurriculaVitae> findByJobSeekerId(int jobseekerId) {
         if (this.curriculaVitaeDao.findByJobSeekerId(jobseekerId) == null) {
-            return new WarningDataResult<>("Warning: Kayıtlı Cv bulunamadı!");
+            return new WarningDataResult<>("Kayıtlı Cv bulunamadı!");
         } else {
             return new SuccessDataResult<>(
                     this.curriculaVitaeDao.findByJobSeekerId(jobseekerId),
-                    "Success: Cv'ler başarıyla listelendi!");
+                    "Cv'ler başarıyla listelendi!");
         }
     }
 
@@ -63,6 +63,6 @@ public class CurriculaVitaeManager implements CurriculaVitaeService {
         ref.setPictureUrl(url.toString());
         this.curriculaVitaeDao.save(ref);
 
-        return new SuccessResult("Success: Resim ekleme işlemi başarılı!");
+        return new SuccessResult("Resim ekleme işlemi başarılı!");
     }
 }

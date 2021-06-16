@@ -25,15 +25,15 @@ public class LanguageManager implements LanguageService {
     public DataResult<List<Language>> addLanguages(List<Language> languages) {
         return new SuccessDataResult<>(
                 this.languageDao.saveAll(languages),
-                "Success: Yabancı dil ekleme işlemi başarılı!");
+                "Yabancı dil ekleme işlemi başarılı!");
     }
 
     @Override
     public DataResult<List<Language>> getLanguages() {
         if (this.languageDao.findAll().isEmpty()) {
-            return new WarningDataResult<>("Warning: Kayıtlı yabancı dil bulunamadı!");
+            return new WarningDataResult<>("Kayıtlı yabancı dil bulunamadı!");
         }
-        return new SuccessDataResult<>(this.languageDao.findAll(), "Success: Yabancı diller başarıyla listelendi!");
+        return new SuccessDataResult<>(this.languageDao.findAll(), "Yabancı diller başarıyla listelendi!");
 
     }
 }

@@ -25,31 +25,31 @@ public class JobSeekerManager implements JobSeekerService {
     @Override
     public DataResult<List<JobSeeker>> getJobSeekers() {
         if ((long) this.jobSeekerDao.findAll().size() > 0) {
-            return new SuccessDataResult<>(this.jobSeekerDao.findAll(), "Success: İş Arayanlar listelendi!");
+            return new SuccessDataResult<>(this.jobSeekerDao.findAll(), "İş Arayanlar listelendi!");
         }
 
-        return new WarningDataResult<>(this.jobSeekerDao.findAll(), "Warning: Herhangi bir iş arayan bulunamadı!");
+        return new WarningDataResult<>(this.jobSeekerDao.findAll(), "Herhangi bir iş arayan bulunamadı!");
     }
 
     @Override
     public Result addJobSeeker(JobSeeker jobSeeker) {
         try {
             if (!EmailValidator.emailFormatController(jobSeeker.getEmail())) {
-                return new ErrorResult("Error: Mail formata uygun değil!");
+                return new ErrorResult("Mail formata uygun değil!");
             } else if (!mernisCheckService.isMernis(jobSeeker)) {
-                return new ErrorResult("Error: Gerçek bir kişi değil!");
+                return new ErrorResult("Gerçek bir kişi değil!");
             } else {
                 this.jobSeekerDao.save(jobSeeker);
                 return new SuccessResult(
-                        "Success: İş arayan kullanıcı sisteme eklendi, Doğrulama kodu email adresinize gönderildi!");
+                        "İş arayan kullanıcı sisteme eklendi, Doğrulama kodu email adresinize gönderildi!");
             }
         } catch (Exception e) {
             if (e.getMessage()
                  .contains("[uc_users_email]")) {
-                return new ErrorResult("Error: Eposta sistemde mevcut, lütfen başka bir eposta adresi giriniz!");
+                return new ErrorResult("Eposta sistemde mevcut, lütfen başka bir eposta adresi giriniz!");
             } else {
                 return new ErrorResult(
-                        "Error: Kimlik numarası sistem de kayıtlı, lütfen başka bir kimlik numarası giriniz!");
+                        "Kimlik numarası sistem de kayıtlı, lütfen başka bir kimlik numarası giriniz!");
             }
         }
     }
@@ -57,17 +57,17 @@ public class JobSeekerManager implements JobSeekerService {
     @Override
     public Result deleteJobSeekerById(int jobSeekerId) {
         this.jobSeekerDao.deleteJobSeekerById(jobSeekerId);
-        return new SuccessResult("Success: İş arayan silindi!");
+        return new SuccessResult("İş arayan silindi!");
     }
 
     @Override
     public DataResult<JobSeeker> getJobSeekerById(int jobSeekerId) {
         if (this.jobSeekerDao.getJobSeekerById(jobSeekerId) == null) {
-            return new WarningDataResult<>("Warning: Kayıtlı İş Arayan bulunamadı!");
+            return new WarningDataResult<>("Kayıtlı İş Arayan bulunamadı!");
         } else {
             return new SuccessDataResult<>(
                     this.jobSeekerDao.getJobSeekerById(jobSeekerId),
-                    "Success: İş Arayan listelendi!");
+                    "İş Arayan listelendi!");
         }
     }
 

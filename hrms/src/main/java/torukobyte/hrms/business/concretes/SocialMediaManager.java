@@ -21,6 +21,6 @@ public class SocialMediaManager implements SocialMediaService {
     @Override
     public Result addSocialMedia(SocialMedia socialMedia) {
         this.socialMediaDao.save(socialMedia);
-        return new SuccessResult("Success: Sosyal medya bağlantıları başarıyla sisteme eklendi!");
+        return new SuccessResult("Sosyal medya bağlantıları başarıyla sisteme eklendi!");
     }
 }

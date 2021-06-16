@@ -22,16 +22,16 @@ public class TechnologieManager implements TechnologieService {
     @Override
     public Result addProgrammingLanguage(Technologie pl) {
         this.technologieDao.save(pl);
-        return new SuccessResult("Success: Programlama dili başarıyla eklendi!");
+        return new SuccessResult("Programlama dili başarıyla eklendi!");
     }
 
     @Override
     public DataResult<List<Technologie>> getAllProgrammingLanguage() {
         if (this.technologieDao.findAll().isEmpty()) {
-            return new WarningDataResult<>("Warning: Kayıtlı bir programlama dili yok!");
+            return new WarningDataResult<>("Kayıtlı bir programlama dili yok!");
         }
         return new SuccessDataResult<>(
                 this.technologieDao.findAll(),
-                "Success: Programlama dilleri başarıyla listelendi!");
+                "Programlama dilleri başarıyla listelendi!");
     }
 }
