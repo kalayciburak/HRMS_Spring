@@ -3,6 +3,7 @@ package torukobyte.hrms.business.concretes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import torukobyte.hrms.business.abstracts.JobSeekerService;
+import torukobyte.hrms.core.services.EmailCheckService;
 import torukobyte.hrms.core.services.MernisCheckService;
 import torukobyte.hrms.core.utilities.EmailValidator;
 import torukobyte.hrms.core.utilities.results.*;
@@ -15,11 +16,16 @@ import java.util.List;
 public class JobSeekerManager implements JobSeekerService {
     private final JobSeekerDao jobSeekerDao;
     private final MernisCheckService mernisCheckService;
+    private final EmailCheckService emailCheckService;
 
     @Autowired
-    public JobSeekerManager(JobSeekerDao jobSeekerDao, MernisCheckService mernisCheckService) {
+    public JobSeekerManager(
+            JobSeekerDao jobSeekerDao,
+            MernisCheckService mernisCheckService,
+            EmailCheckService emailCheckService) {
         this.jobSeekerDao = jobSeekerDao;
         this.mernisCheckService = mernisCheckService;
+        this.emailCheckService = emailCheckService;
     }
 
     @Override
@@ -41,7 +47,7 @@ public class JobSeekerManager implements JobSeekerService {
             } else {
                 this.jobSeekerDao.save(jobSeeker);
                 return new SuccessResult(
-                        "Success: İş arayan kullanıcı sisteme eklendi, Doğrulama kodu email adresinize gönderildi!");
+                        "Success: İş arayan kullanıcı sisteme eklendi, " + emailCheckService.emailValidator(jobSeeker));
             }
         } catch (Exception e) {
             if (e.getMessage()

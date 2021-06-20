@@ -4,7 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import torukobyte.hrms.business.abstracts.EmployerService;
-import torukobyte.hrms.core.helpers.CloudinaryService;
+import torukobyte.hrms.core.services.CloudinaryService;
+import torukobyte.hrms.core.services.EmailCheckService;
 import torukobyte.hrms.core.utilities.EmailValidator;
 import torukobyte.hrms.core.utilities.results.*;
 import torukobyte.hrms.dataAccess.abstracts.EmployerDao;
@@ -16,13 +17,17 @@ import java.util.List;
 @Service
 public class EmployerManager implements EmployerService {
     private final EmployerDao employerDao;
-
     private final CloudinaryService cloudinaryService;
+    private final EmailCheckService emailCheckService;
 
     @Autowired
-    public EmployerManager(EmployerDao employerDao, CloudinaryService cloudinaryService) {
+    public EmployerManager(
+            EmployerDao employerDao,
+            CloudinaryService cloudinaryService,
+            EmailCheckService emailCheckService) {
         this.employerDao = employerDao;
         this.cloudinaryService = cloudinaryService;
+        this.emailCheckService = emailCheckService;
     }
 
     @Override
@@ -44,8 +49,8 @@ public class EmployerManager implements EmployerService {
         try {
             if (!EmailValidator.emailFormatController(employer.getEmail())) {
                 return new ErrorResult("Error: Mail formata uygun değil!");
-            } else if (!website.contains("www") || !website.contains(".")) {
-                return new ErrorResult("Error: Web sitesi formatı uygun değil!");
+            } else if (!website.contains("www") && !website.contains(".")) {
+                return new ErrorResult("Error: Web sitesi formatı uygun değil! (Örn: www.google.com)");
             } else if (!employerDomain.equals(website)) {
                 return new ErrorResult("Error: Web sitesi ile email aynı domaine sahip değil!");
             } /*else if (!employer.getPassword().equals(employer.getConfirmPassword())) {
@@ -53,7 +58,7 @@ public class EmployerManager implements EmployerService {
             } */ else {
                 this.employerDao.save(employer);
                 return new SuccessResult(
-                        "Success: İş veren kullanıcı sisteme eklendi, Doğrulama kodu email adresinize gönderildi!");
+                        "Success: İş veren kullanıcı sisteme eklendi, " + emailCheckService.emailValidator(employer));
             }
         } catch (Exception e) {
             if (e.getMessage()

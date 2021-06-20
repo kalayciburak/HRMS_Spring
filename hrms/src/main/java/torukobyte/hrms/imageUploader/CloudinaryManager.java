@@ -1,4 +1,4 @@
-package torukobyte.hrms.core.helpers;
+package torukobyte.hrms.imageUploader;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class CloudinaryManager implements CloudinaryService {
+public class CloudinaryManager {
 
     Cloudinary cloudinary;
 
@@ -27,7 +27,6 @@ public class CloudinaryManager implements CloudinaryService {
                 "api_secret", "M3qBYqB4CD2LYsRq0d9umRZG1Rs"));
     }
 
-    @Override
     public DataResult<Map> addPicture(MultipartFile multipartFile) throws IOException {
         Map<String, Object> options = new HashMap<>();
         var allowedFormats = Arrays.asList("png", "jpg", "jpeg");

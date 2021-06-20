@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import torukobyte.hrms.business.abstracts.CurriculaVitaeService;
-import torukobyte.hrms.core.helpers.CloudinaryService;
+import torukobyte.hrms.core.services.CloudinaryService;
 import torukobyte.hrms.core.utilities.results.*;
 import torukobyte.hrms.dataAccess.abstracts.CurriculaVitaeDao;
 import torukobyte.hrms.entities.concretes.CurriculaVitae;
