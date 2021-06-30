@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import torukobyte.hrms.business.abstracts.EducationService;
+import torukobyte.hrms.core.dtoConverter.DtoConverterService;
 import torukobyte.hrms.core.utilities.results.*;
 import torukobyte.hrms.dataAccess.abstracts.EducationDao;
 import torukobyte.hrms.entities.concretes.Education;
+import torukobyte.hrms.entities.dtos.addDtos.EducationAddDto;
 
 import java.util.List;
 
@@ -15,14 +17,17 @@ public class EducationManager implements EducationService {
 
     private final EducationDao educationDao;
 
+    private final DtoConverterService dtoConverterService;
+
     @Autowired
-    public EducationManager(EducationDao educationDao) {
+    public EducationManager(EducationDao educationDao, DtoConverterService dtoConverterService) {
         this.educationDao = educationDao;
+        this.dtoConverterService = dtoConverterService;
     }
 
     @Override
-    public Result addEducation(Education education) {
-        this.educationDao.save(education);
+    public Result addEducation(EducationAddDto education) {
+        this.educationDao.save((Education) this.dtoConverterService.dtoClassConverter(education, Education.class));
         return new SuccessResult("Success: Eğitim bilgileri başarıyla eklendi!");
     }
 

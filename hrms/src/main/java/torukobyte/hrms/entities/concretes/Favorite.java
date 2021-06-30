@@ -1,20 +1,18 @@
 package torukobyte.hrms.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "languages")
-public class Language {
+@Table(name = "favorites")
+public class Favorite {
 
     @Id
     @Column(name = "id")
@@ -22,10 +20,11 @@ public class Language {
     @NotNull
     private int id;
 
-    @Column(name = "language_name")
-    private String languageName;
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "jobseeker_id")
+    private JobSeeker jobSeeker;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "language", cascade = CascadeType.DETACH)
-    private List<JobSeekerLanguage> languages;
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "job_advert_id")
+    private JobAdvert jobAdvert;
 }

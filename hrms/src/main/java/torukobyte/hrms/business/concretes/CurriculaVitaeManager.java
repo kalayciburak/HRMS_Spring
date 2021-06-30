@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import torukobyte.hrms.business.abstracts.CurriculaVitaeService;
+import torukobyte.hrms.core.dtoConverter.DtoConverterService;
 import torukobyte.hrms.core.services.CloudinaryService;
 import torukobyte.hrms.core.utilities.results.*;
 import torukobyte.hrms.dataAccess.abstracts.CurriculaVitaeDao;
 import torukobyte.hrms.entities.concretes.CurriculaVitae;
+import torukobyte.hrms.entities.dtos.addDtos.CurriculaVitaeAddDto;
 
 import java.io.IOException;
 
@@ -18,17 +20,31 @@ public class CurriculaVitaeManager implements CurriculaVitaeService {
 
     private final CloudinaryService cloudinaryService;
 
+    private final DtoConverterService dtoConverterService;
+
     @Autowired
-    public CurriculaVitaeManager(CurriculaVitaeDao curriculaVitaeDao, CloudinaryService cloudinaryService) {
+    public CurriculaVitaeManager(
+            CurriculaVitaeDao curriculaVitaeDao,
+            CloudinaryService cloudinaryService,
+            DtoConverterService dtoConverterService) {
         this.curriculaVitaeDao = curriculaVitaeDao;
         this.cloudinaryService = cloudinaryService;
+        this.dtoConverterService = dtoConverterService;
 
     }
 
     @Override
-    public Result addCv(CurriculaVitae curriculaVitae) {
-        this.curriculaVitaeDao.save(curriculaVitae);
+    public Result addCv(CurriculaVitaeAddDto curriculaVitae) {
+        this.curriculaVitaeDao.save((CurriculaVitae) this.dtoConverterService.dtoClassConverter(
+                curriculaVitae,
+                CurriculaVitae.class));
         return new SuccessResult("Success: Cv başarıyla eklendi!");
+    }
+
+    @Override
+    public Result updateCv(CurriculaVitae curriculaVitae) {
+        this.curriculaVitaeDao.save(curriculaVitae);
+        return new SuccessResult("Success: Cv başarıyla güncellendi!");
     }
 
 //    @Override

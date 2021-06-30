@@ -27,23 +27,22 @@ public class CurriculaVitae {
     @Column(name = "picture_url")
     private String pictureUrl = "https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png";
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "social_media_id")
-    private SocialMedia socialMedia;
-
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "jobseeker_id")
     private JobSeeker jobSeeker;
 
-    @OneToMany(mappedBy = "curriculaVitae", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "curriculaVitae", cascade = CascadeType.DETACH)
+    private List<SocialMedia> socialMedias;
+
+    @OneToMany(mappedBy = "curriculaVitae", cascade = CascadeType.DETACH)
     private List<Education> educations;
 
-    @OneToMany(mappedBy = "curriculaVitae", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "curriculaVitae", cascade = CascadeType.DETACH)
     private List<JobExperience> jobExperiences;
 
-    @OneToMany(mappedBy = "curriculaVitae", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "curriculaVitae", cascade = CascadeType.DETACH)
     private List<JobSeekerLanguage> jobSeekerLanguages;
 
-    @OneToMany(mappedBy = "curriculaVitae", cascade = CascadeType.ALL)
-    private List<Technologie> technologies;
+    @OneToMany(mappedBy = "curriculaVitae", cascade = CascadeType.DETACH)
+    private List<Technology> technologies;
 }

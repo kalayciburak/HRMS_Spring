@@ -45,9 +45,18 @@ public class JobAdvertsController {
         return this.jobAdvertService.findAllByIsActiveTrue(isDesc);
     }
 
-    @GetMapping("/getJobAdvertByIsActiveTrueAndIsConfirmedTrue")
-    public DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrue(@RequestParam boolean isDesc) {
-        return this.jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(isDesc);
+    @GetMapping("/getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageDesc")
+    public DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageDesc(
+            @RequestParam int pageNo,
+            int pageSize) {
+        return this.jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageDesc(pageNo - 1, pageSize);
+    }
+
+    @GetMapping("/getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageAsc")
+    public DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageAsc(
+            @RequestParam int pageNo,
+            int pageSize) {
+        return this.jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageAsc(pageNo - 1, pageSize);
     }
 
     @GetMapping("/getJobAdvertById")

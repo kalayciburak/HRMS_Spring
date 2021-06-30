@@ -45,6 +45,11 @@ public class SystemPersonelsController {
         return this.systemPersonelService.addSystemPersonel(systemPersonel);
     }
 
+    @PutMapping("/updateSystemPersonel")
+    public Result updateSystemPersonel(@RequestBody SystemPersonel systemPersonel) {
+        return this.systemPersonelService.updateSystemPersonel(systemPersonel);
+    }
+
     @PostMapping("/changeIsConfirmed")
     public Result changeIsConfirmed(@RequestParam boolean confirm, int jobAdvertId) {
         return this.jobAdvertService.changeIsConfirmed(confirm, jobAdvertId);

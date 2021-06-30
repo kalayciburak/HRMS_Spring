@@ -1,5 +1,6 @@
 package torukobyte.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -17,6 +19,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "favorites"})
+
 public class JobAdvert {
 
     @Id
@@ -76,4 +80,7 @@ public class JobAdvert {
     @ManyToOne()
     @JoinColumn(name = "city_id")
     private City city;
+
+    @OneToMany(mappedBy = "jobAdvert", cascade = CascadeType.DETACH)
+    private List<Favorite> favorites;
 }

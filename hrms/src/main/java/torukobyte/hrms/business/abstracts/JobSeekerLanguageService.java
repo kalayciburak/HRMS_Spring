@@ -1,8 +1,8 @@
 package torukobyte.hrms.business.abstracts;
 
 import torukobyte.hrms.core.utilities.results.Result;
-import torukobyte.hrms.entities.concretes.JobSeekerLanguage;
+import torukobyte.hrms.entities.dtos.addDtos.JobSeekerLanguageAddDto;
 
 public interface JobSeekerLanguageService {
-    Result addJobSeekerLanguage(JobSeekerLanguage jobSeekerLanguage);
+    Result addJobSeekerLanguage(JobSeekerLanguageAddDto jobSeekerLanguage);
 }

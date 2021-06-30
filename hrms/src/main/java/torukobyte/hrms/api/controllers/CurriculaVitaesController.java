@@ -6,6 +6,7 @@ import torukobyte.hrms.business.abstracts.CurriculaVitaeService;
 import torukobyte.hrms.core.utilities.results.DataResult;
 import torukobyte.hrms.core.utilities.results.Result;
 import torukobyte.hrms.entities.concretes.CurriculaVitae;
+import torukobyte.hrms.entities.dtos.addDtos.CurriculaVitaeAddDto;
 
 import java.io.IOException;
 
@@ -31,8 +32,13 @@ public class CurriculaVitaesController {
     }
 
     @PostMapping("/addCv")
-    public Result addCv(@RequestBody CurriculaVitae curriculaVitae) {
+    public Result addCv(@RequestBody CurriculaVitaeAddDto curriculaVitae) {
         return this.curriculaVitaeService.addCv(curriculaVitae);
+    }
+
+    @PutMapping("/updateCv")
+    public Result updateCv(@RequestBody CurriculaVitae curriculaVitae) {
+        return this.curriculaVitaeService.updateCv(curriculaVitae);
     }
 
     @PostMapping("/addPicture")

@@ -28,7 +28,7 @@ CREATE TABLE public.employers
     company_name CHARACTER VARYING(255) NOT NULL,
     website      CHARACTER VARYING(255) NOT NULL,
     phone_number CHARACTER VARYING(12)  NOT NULL,
-    picture_url  CHARACTER VARYING(100),
+    picture_url  CHARACTER VARYING(500),
     CONSTRAINT pk_employers PRIMARY KEY (user_id),
     CONSTRAINT fk_employers_users FOREIGN KEY (user_id) REFERENCES public.users (id) ON DELETE CASCADE,
     CONSTRAINT uc_employers_company_name UNIQUE (company_name)
@@ -102,14 +102,12 @@ CREATE TABLE public.job_adverts
 
 CREATE TABLE public.curricula_vitaes
 (
-    id              INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
-    jobseeker_id    INTEGER NOT NULL,
-    social_media_id INTEGER NOT NULL,
-    picture_url     CHARACTER VARYING(100),
-    cover_letter    CHARACTER VARYING(200),
+    id           INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    jobseeker_id INTEGER NOT NULL,
+    picture_url  CHARACTER VARYING(500),
+    cover_letter CHARACTER VARYING(200),
     CONSTRAINT pk_curricula_vitaes PRIMARY KEY (id),
-    CONSTRAINT uc_curricula_vitaes_jobseeker UNIQUE (jobseeker_id),
-    CONSTRAINT uc_curricula_vitaes_social_medias UNIQUE (social_media_id)
+    CONSTRAINT uc_curricula_vitaes_jobseeker UNIQUE (jobseeker_id)
 );
 
 CREATE TABLE public.educations
@@ -166,9 +164,10 @@ CREATE TABLE public.jobseeker_languages
 
 CREATE TABLE public.social_medias
 (
-    id                INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
-    github_username   CHARACTER VARYING(100),
-    linkedin_username CHARACTER VARYING(100),
+    id                 INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    curricula_vitae_id INTEGER NOT NULL,
+    github_username    CHARACTER VARYING(100),
+    linkedin_username  CHARACTER VARYING(100),
     CONSTRAINT pk_social_medias PRIMARY KEY (id),
     CONSTRAINT uc_social_medias_github_username UNIQUE (github_username),
     CONSTRAINT uc_social_medias_linkedin_username UNIQUE (linkedin_username)
@@ -182,8 +181,16 @@ CREATE TABLE public.technologies
     CONSTRAINT pk_techonologies PRIMARY KEY (id)
 );
 
-ALTER TABLE public.curricula_vitaes
-    ADD FOREIGN KEY (social_media_id) REFERENCES public.social_medias (id);
+CREATE TABLE public.favorites
+(
+    id            INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999 CACHE 1 ),
+    jobseeker_id  INTEGER NOT NULL,
+    job_advert_id INTEGER NOT NULL,
+    CONSTRAINT pk_favorites PRIMARY KEY (id)
+);
+
+ALTER TABLE public.social_medias
+    ADD FOREIGN KEY (curricula_vitae_id) REFERENCES public.curricula_vitaes (id);
 
 ALTER TABLE public.curricula_vitaes
     ADD FOREIGN KEY (jobseeker_id) REFERENCES public.jobseekers (user_id);
@@ -208,6 +215,13 @@ ALTER TABLE public.job_experiences
 
 ALTER TABLE public.technologies
     ADD FOREIGN KEY (curricula_vitae_id) REFERENCES public.curricula_vitaes (id);
+
+ALTER TABLE public.favorites
+    ADD FOREIGN KEY (jobseeker_id) REFERENCES public.jobseekers (user_id);
+
+ALTER TABLE public.favorites
+    ADD FOREIGN KEY (job_advert_id) REFERENCES public.job_adverts (id);
+
 
 INSERT INTO departments
     OVERRIDING SYSTEM VALUE
@@ -1168,27 +1182,27 @@ VALUES (17, 'angryblonde'),
        (18, 'blackhat'),
        (19, 'reddokun');
 
-INSERT INTO social_medias
-    OVERRIDING SYSTEM VALUE
-VALUES (1, 'torukobyte', 'torukobyte'),
-       (2, 'aysekaya', 'aysekaya'),
-       (3, 'elamola', 'elamola'),
-       (4, 'alibetik', 'alibetik'),
-       (5, 'ahmetserin', 'ahmetserin'),
-       (6, 'iremderin', 'iremderin'),
-       (7, 'leyladurgun', 'leyladurgun'),
-       (8, 'mecnuncinar', 'mecnuncinar');
-
 INSERT INTO curricula_vitaes
     OVERRIDING SYSTEM VALUE
-VALUES (1, 1, 1, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Burak ile ilgili önsöz..'),
-       (2, 2, 2, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Ayşe ile ilgili önsöz..'),
-       (3, 3, 3, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Ela ile ilgili önsöz..'),
-       (4, 4, 4, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Ali ile ilgili önsöz..'),
-       (5, 5, 5, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Ahmet ile ilgili önsöz..'),
-       (6, 6, 6, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'İrem ile ilgili önsöz..'),
-       (7, 7, 7, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Leyla ile ilgili önsöz..'),
-       (8, 8, 8, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Mecnun ile ilgili önsöz..');
+VALUES (1, 1, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Burak ile ilgili önsöz..'),
+       (2, 2, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Ayşe ile ilgili önsöz..'),
+       (3, 3, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Ela ile ilgili önsöz..'),
+       (4, 4, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Ali ile ilgili önsöz..'),
+       (5, 5, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Ahmet ile ilgili önsöz..'),
+       (6, 6, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'İrem ile ilgili önsöz..'),
+       (7, 7, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Leyla ile ilgili önsöz..'),
+       (8, 8, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Mecnun ile ilgili önsöz..');
+
+INSERT INTO social_medias
+    OVERRIDING SYSTEM VALUE
+VALUES (1, 1, 'torukobyte', 'torukobyte'),
+       (2, 2, 'aysekaya', 'aysekaya'),
+       (3, 3, 'elamola', 'elamola'),
+       (4, 4, 'alibetik', 'alibetik'),
+       (5, 5, 'ahmetserin', 'ahmetserin'),
+       (6, 6, 'iremderin', 'iremderin'),
+       (7, 7, 'leyladurgun', 'leyladurgun'),
+       (8, 8, 'mecnuncinar', 'mecnuncinar');
 
 INSERT INTO technologies
     OVERRIDING SYSTEM VALUE

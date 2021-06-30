@@ -1,7 +1,7 @@
 package torukobyte.hrms.dataAccess.abstracts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import torukobyte.hrms.entities.concretes.Technologie;
+import torukobyte.hrms.entities.concretes.Technology;
 
-public interface TechnologieDao extends JpaRepository<Technologie, Integer> {
+public interface TechnologieDao extends JpaRepository<Technology, Integer> {
 }

@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import torukobyte.hrms.business.abstracts.TechnologieService;
 import torukobyte.hrms.core.utilities.results.DataResult;
 import torukobyte.hrms.core.utilities.results.Result;
-import torukobyte.hrms.entities.concretes.Technologie;
+import torukobyte.hrms.entities.concretes.Technology;
+import torukobyte.hrms.entities.dtos.addDtos.TechnologyAddDto;
 
 import java.util.List;
 
@@ -22,12 +23,12 @@ public class TechnologiesController {
     }
 
     @GetMapping("/getProgrammingLanguages")
-    public DataResult<List<Technologie>> getProgrammingLanguages() {
+    public DataResult<List<Technology>> getProgrammingLanguages() {
         return this.technologieService.getAllProgrammingLanguage();
     }
 
     @PostMapping("/addProgrammingLanguage")
-    public Result addProgrammingLanguage(@RequestBody Technologie pl) {
+    public Result addProgrammingLanguage(@RequestBody TechnologyAddDto pl) {
         return this.technologieService.addProgrammingLanguage(pl);
     }
 }

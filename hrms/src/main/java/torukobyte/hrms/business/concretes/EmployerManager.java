@@ -71,6 +71,36 @@ public class EmployerManager implements EmployerService {
     }
 
     @Override
+    public Result updateEmployer(Employer employer) {
+        String[] employerWebsite = employer.getWebsite().split("\\.", 2);
+        String website = employerWebsite[1];
+
+        String[] employerEmail = employer.getEmail().split("@");
+        String employerDomain = employerEmail[1];
+        try {
+            if (!EmailValidator.emailFormatController(employer.getEmail())) {
+                return new ErrorResult("Error: Mail formata uygun değil!");
+            } else if (!website.contains("www") && !website.contains(".")) {
+                return new ErrorResult("Error: Web sitesi formatı uygun değil! (Örn: www.google.com)");
+            } else if (!employerDomain.equals(website)) {
+                return new ErrorResult("Error: Web sitesi ile email aynı domaine sahip değil!");
+            } /*else if (!employer.getPassword().equals(employer.getConfirmPassword())) {
+                return new ErrorResult("Girmiş olduğunuz şifreler uyuşmuyor!");
+            } */ else {
+                this.employerDao.save(employer);
+                return new SuccessResult("Success: İş veren bilgileri güncellendi!");
+            }
+        } catch (Exception e) {
+            if (e.getMessage()
+                 .contains("[uc_users_email]")) {
+                return new ErrorResult("Error: Eposta sistemde mevcut, lütfen başka bir eposta adresi giriniz!");
+            } else {
+                return new ErrorResult("Error: Şirket adı sistem de kayıtlı, lütfen başka bir Şirket adı giriniz!");
+            }
+        }
+    }
+
+    @Override
     public Result deleteEmployerById(int employerId) {
         this.employerDao.deleteEmployerById(employerId);
         return new SuccessResult("Success: Şirket silindi!");

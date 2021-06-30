@@ -27,7 +27,7 @@ public class EmployerController {
         this.jobAdvertService = jobAdvertService;
     }
 
-    @GetMapping("/getemployers")
+    @GetMapping("/getEmployers")
     public DataResult<List<Employer>> getEmployers() {
         return this.employerService.getEmployers();
     }
@@ -42,10 +42,16 @@ public class EmployerController {
         return this.employerService.deleteEmployerById(employerId);
     }
 
-    @PostMapping("/addemployer")
+    @PostMapping("/addEmployer")
     public Result addEmployer(@RequestBody Employer employer) {
         return this.employerService.addEmployer(employer);
     }
+
+    @PutMapping("/updateEmployer")
+    public Result updateEmployer(@RequestBody Employer employer) {
+        return this.employerService.updateEmployer(employer);
+    }
+
 
     @PostMapping("/changeIsActive")
     public Result changeIsActive(@RequestParam boolean active, int jobAdvertId) {

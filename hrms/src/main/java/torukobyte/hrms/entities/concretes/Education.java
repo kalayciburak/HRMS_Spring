@@ -32,15 +32,15 @@ public class Education {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "curricula_vitae_id")
     private CurriculaVitae curriculaVitae;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "school_id")
     private School school;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "department_id")
     private Department department;
 }

@@ -6,6 +6,7 @@ import torukobyte.hrms.business.abstracts.EducationService;
 import torukobyte.hrms.core.utilities.results.DataResult;
 import torukobyte.hrms.core.utilities.results.Result;
 import torukobyte.hrms.entities.concretes.Education;
+import torukobyte.hrms.entities.dtos.addDtos.EducationAddDto;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class EducationsController {
     }
 
     @PostMapping("/addEducation")
-    public Result addEducation(@RequestBody Education education) {
+    public Result addEducation(@RequestBody EducationAddDto education) {
         return this.educationService.addEducation(education);
     }
 }

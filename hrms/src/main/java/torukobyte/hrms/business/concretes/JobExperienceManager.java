@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import torukobyte.hrms.business.abstracts.JobExperienceService;
+import torukobyte.hrms.core.dtoConverter.DtoConverterService;
 import torukobyte.hrms.core.utilities.results.*;
 import torukobyte.hrms.dataAccess.abstracts.JobExperienceDao;
 import torukobyte.hrms.entities.concretes.JobExperience;
+import torukobyte.hrms.entities.dtos.addDtos.JobExperienceAddDto;
 
 import java.util.List;
 
@@ -15,14 +17,19 @@ public class JobExperienceManager implements JobExperienceService {
 
     private final JobExperienceDao jobExperienceDao;
 
+    private final DtoConverterService dtoConverterService;
+
     @Autowired
-    public JobExperienceManager(JobExperienceDao jobExperienceDao) {
+    public JobExperienceManager(JobExperienceDao jobExperienceDao, DtoConverterService dtoConverterService) {
         this.jobExperienceDao = jobExperienceDao;
+        this.dtoConverterService = dtoConverterService;
     }
 
     @Override
-    public Result addJobExperience(JobExperience jobExperience) {
-        this.jobExperienceDao.save(jobExperience);
+    public Result addJobExperience(JobExperienceAddDto jobExperience) {
+        this.jobExperienceDao.save((JobExperience) this.dtoConverterService.dtoClassConverter(
+                jobExperience,
+                JobExperience.class));
         return new SuccessResult("Success: Kariyer bilgisi başarıyla sisteme eklendi!");
     }
 

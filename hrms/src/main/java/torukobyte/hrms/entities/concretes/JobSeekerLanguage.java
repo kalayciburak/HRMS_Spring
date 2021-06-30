@@ -32,11 +32,11 @@ public class JobSeekerLanguage {
     @NotBlank
     private int languageDegree;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "language_id")
     private Language language;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "curricula_vitae_id")
     private CurriculaVitae curriculaVitae;
 }

@@ -1,6 +1,5 @@
 package torukobyte.hrms.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,14 +7,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "social_medias")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "curriculaVitaes"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "curriculaVitae"})
 public class SocialMedia {
 
     @Id
@@ -30,7 +28,7 @@ public class SocialMedia {
     @Column(name = "linkedin_username")
     private String linkedinUsername;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "socialMedia", cascade = CascadeType.ALL)
-    private List<CurriculaVitae> curriculaVitaes;
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "curricula_vitae_id")
+    private CurriculaVitae curriculaVitae;
 }

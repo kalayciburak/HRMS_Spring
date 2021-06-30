@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "technologies")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "curriculaVitae"})
 
-public class Technologie {
+public class Technology {
 
     @Id
     @Column(name = "id")
@@ -26,7 +26,7 @@ public class Technologie {
     @Column(name = "technologies")
     private String plName;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "curricula_vitae_id")
     private CurriculaVitae curriculaVitae;
 }

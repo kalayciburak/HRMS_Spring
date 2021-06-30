@@ -2,12 +2,13 @@ package torukobyte.hrms.business.abstracts;
 
 import torukobyte.hrms.core.utilities.results.DataResult;
 import torukobyte.hrms.core.utilities.results.Result;
-import torukobyte.hrms.entities.concretes.Technologie;
+import torukobyte.hrms.entities.concretes.Technology;
+import torukobyte.hrms.entities.dtos.addDtos.TechnologyAddDto;
 
 import java.util.List;
 
 public interface TechnologieService {
-    Result addProgrammingLanguage(Technologie pl);
+    Result addProgrammingLanguage(TechnologyAddDto pl);
 
-    DataResult<List<Technologie>> getAllProgrammingLanguage();
+    DataResult<List<Technology>> getAllProgrammingLanguage();
 }

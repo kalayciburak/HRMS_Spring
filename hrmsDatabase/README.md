@@ -2,4 +2,4 @@
 
 # Database Diagram
 
-![hrmsDatabase](https://user-images.githubusercontent.com/61664693/121781515-ce8c1600-cbad-11eb-9d9a-f9f53fd19098.png)
+![hrmsDatabase](https://user-images.githubusercontent.com/61664693/123967608-25bc2400-d9bf-11eb-8e8c-0b4a96f0fa3c.png)

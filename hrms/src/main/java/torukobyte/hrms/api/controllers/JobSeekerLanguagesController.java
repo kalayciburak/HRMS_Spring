@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import torukobyte.hrms.business.abstracts.JobSeekerLanguageService;
 import torukobyte.hrms.core.utilities.results.Result;
-import torukobyte.hrms.entities.concretes.JobSeekerLanguage;
+import torukobyte.hrms.entities.dtos.addDtos.JobSeekerLanguageAddDto;
 
 @RestController
 @RequestMapping("/api/jobseekerLanguages")
@@ -18,7 +18,7 @@ public class JobSeekerLanguagesController {
     }
 
     @PostMapping("/addJobseekerLanguages")
-    public Result addJobseekerLanguage(@RequestBody JobSeekerLanguage jobSeekerLanguage) {
+    public Result addJobseekerLanguage(@RequestBody JobSeekerLanguageAddDto jobSeekerLanguage) {
         return this.jobSeekerLanguageService.addJobSeekerLanguage(jobSeekerLanguage);
     }
 }

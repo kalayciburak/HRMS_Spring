@@ -43,6 +43,22 @@ public class SystemPersonelManager implements SystemPersonelService {
     }
 
     @Override
+    public Result updateSystemPersonel(SystemPersonel systemPersonel) {
+        try {
+            this.systemPeronelDao.save(systemPersonel);
+            return new SuccessResult("Success: Personel başarıyla güncellendi!");
+        } catch (Exception e) {
+            if (e.getMessage()
+                 .contains("[uc_users_email]")) {
+                return new ErrorResult("Error: Eposta sistemde mevcut, lütfen başka bir eposta adresi giriniz!");
+            } else {
+                return new ErrorResult(
+                        "Error: Kullanıcı adı sistem de kayıtlı, lütfen başka bir kullanıcı adı giriniz!");
+            }
+        }
+    }
+
+    @Override
     public DataResult<SystemPersonel> getSystemPersonelById(int systemPersonelId) {
         if (this.systemPeronelDao.getSystemPersonelById(systemPersonelId) == null) {
             return new WarningDataResult<>("Warning: Kayıtlı Personel bulunamadı!");
@@ -51,7 +67,6 @@ public class SystemPersonelManager implements SystemPersonelService {
                     this.systemPeronelDao.getSystemPersonelById(systemPersonelId),
                     "Success: Personel listelendi!");
         }
-
     }
 
     @Override

@@ -11,6 +11,8 @@ public interface SystemPersonelService {
 
     Result addSystemPersonel(SystemPersonel systemPersonel);
 
+    Result updateSystemPersonel(SystemPersonel systemPersonel);
+
     DataResult<SystemPersonel> getSystemPersonelById(int systemPersonelId);
 
     Result deleteSystemPersonelById(int systemPersonelId);

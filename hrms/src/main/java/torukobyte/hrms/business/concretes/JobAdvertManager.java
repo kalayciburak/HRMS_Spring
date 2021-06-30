@@ -1,6 +1,8 @@
 package torukobyte.hrms.business.concretes;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import torukobyte.hrms.business.abstracts.JobAdvertService;
@@ -53,7 +55,6 @@ public class JobAdvertManager implements JobAdvertService {
             return new SuccessDataResult<>(this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndEmployer_CompanyName(
                     companyName), "Success: Şirket'e ait tüm ilanlar listelendi!");
         }
-
         return new WarningDataResult<>(
                 this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndEmployer_CompanyName(companyName),
                 "Şirket'e ait herhangi bir ilan bulunamadı!");
@@ -67,8 +68,8 @@ public class JobAdvertManager implements JobAdvertService {
             sort = Sort.by(Sort.Direction.DESC, "airdate");
         } else {
             sort = Sort.by(Sort.Direction.ASC, "airdate");
-
         }
+
         if ((long) this.jobAdvertsDao.findAllByIsActiveTrue(sort).size() > 0) {
             return new SuccessDataResult<>(
                     this.jobAdvertsDao.findAllByIsActiveTrue(sort),
@@ -80,22 +81,40 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
-    public DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrue(boolean isDesc) {
+    public DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageDesc(
+            int pageNo,
+            int pageSize) {
+
         Sort sort;
-        if (isDesc) {
-            sort = Sort.by(Sort.Direction.DESC, "airdate");
-        } else {
-            sort = Sort.by(Sort.Direction.ASC, "airdate");
+        sort = Sort.by(Sort.Direction.DESC, "airdate");
+        Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
 
-        }
-        if (this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(sort).size() > 0) {
+        if (this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(pageable).size() > 0) {
             return new SuccessDataResult<>(
-                    this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(sort),
-                    "Success: Onaylı ve Aktif tüm iş ilanları yayınlanma tarihine göre listelendi!");
-
+                    this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(pageable),
+                    "Success: Onaylı ve Aktif tüm iş ilanları yayınlanma tarihine göre azalarak listelendi!");
         }
+
         return new WarningDataResult<>(
-                this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(sort),
+                this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(pageable),
+                "Warning: Onaylı ve Aktif iş ilanı bulunamadı!");
+    }
+
+    @Override
+    public DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageAsc(int pageNo, int pageSize) {
+
+        Sort sort;
+        sort = Sort.by(Sort.Direction.ASC, "airdate");
+        Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
+
+        if (this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(pageable).size() > 0) {
+            return new SuccessDataResult<>(
+                    this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(pageable),
+                    "Success: Onaylı ve Aktif tüm iş ilanları yayınlanma tarihine göre artarak listelendi!");
+        }
+
+        return new WarningDataResult<>(
+                this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(pageable),
                 "Warning: Onaylı ve Aktif iş ilanı bulunamadı!");
     }
 

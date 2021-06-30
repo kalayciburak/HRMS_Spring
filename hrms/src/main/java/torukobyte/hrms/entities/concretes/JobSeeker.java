@@ -19,7 +19,7 @@ import java.util.List;
 @Entity
 @Table(name = "jobseekers", uniqueConstraints = {@UniqueConstraint(columnNames = {"identity_number"})})
 @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "curriculaVitaes"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "curriculaVitaes", "favorites"})
 public class JobSeeker extends User {
 
     @Column(name = "first_name")
@@ -39,6 +39,9 @@ public class JobSeeker extends User {
     private LocalDate birthDate;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "jobSeeker", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "jobSeeker", cascade = CascadeType.DETACH)
     private List<CurriculaVitae> curriculaVitaes;
+
+    @OneToMany(mappedBy = "jobSeeker", cascade = CascadeType.DETACH)
+    private List<Favorite> favorites;
 }

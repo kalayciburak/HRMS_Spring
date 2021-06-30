@@ -26,6 +26,6 @@ public class Department {
     private String departmentName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department", cascade = CascadeType.DETACH)
     private List<Education> educations;
 }

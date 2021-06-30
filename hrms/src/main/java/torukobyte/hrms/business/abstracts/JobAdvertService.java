@@ -17,7 +17,9 @@ public interface JobAdvertService {
 
     DataResult<List<JobAdvert>> findAllByIsActiveTrue(boolean isDesc);
 
-    DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrue(boolean isDesc);
+    DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageDesc(int pageNo, int pageSize);
+
+    DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageAsc(int pageNo, int pageSize);
 
     DataResult<JobAdvert> getJobAdvertById(int jobAdvertId);
 
