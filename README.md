@@ -1,76 +1,21 @@
-## Human resource management system
+### Pair Programming
 
-#### <span style="color:#FF0048FF;">Req 1 : İş Arayanlar sisteme kayıt olabilmelidir.</span>
+<b>This project developed with <a href="https://github.com/8CA5F" target="_blank">Emin Ümüt Erarslan</a>
+a.k.a<a href="https://github.com/8CA5F" target="_blank"> 8CA5F</a></b>
 
-<ul style="color: #92c3ff">
-    <li>Kayıt sırasında kullanıcıdan ad, soyad, tcno, doğum yılı, e-Posta, şifre, şifre tekrarı bilgileri istenir.</li>
-    <li>Tüm alanlar zorunludur. Kullanıcı bilgilendirilir.</li>
-    <li>Mernis doğrulaması yapılarak sisteme kayıt gerçekleştirilir.</li>
-    <li>Doğrulama geçerli değilse kullanıcı bilgilendirilir.</li>
-    <li>Daha önce kayıtlı bir e-posta veya tcno var ise kayıt gerçekleşmez. Kullanıcı bilgilendirilir.</li>
-    <li>Kayıdın gerçekleşmesi için e-posta doğrulaması gerekir.</li>
-</ul>
+<img src="https://user-images.githubusercontent.com/61664693/123968692-23a69500-d9c0-11eb-8207-0e7528063d14.png" width="500">
 
-#### <span style="color:#FF0048FF;">Req 2 : İş verenler sisteme kayıt olabilmelidir.</span>
+[comment]: <> (![logo]&#40;https://user-images.githubusercontent.com/61664693/123968698-243f2b80-d9c0-11eb-9908-877ff3e873ab.png&#41;)
 
-<ul style="color: #92c3ff">
-    <li>Kayıt sırasında kullanıcıdan şirket adı, web sitesi, web sitesi ile aynı domaine sahip e-posta, telefon, şifre, şifre tekrarı bilgileri istenir. Burada amaç sisteme şirket olmayanların katılmasını engellemektir.</li>
-    <li>Tüm alanlar zorunludur. Kullanıcı bilgilendirilir.</li>
-    <li>Şirket kayıtları iki şekilde doğrulanır. Kayıdın gerçekleşmesi için e-posta doğrulaması gerekir. HRMS personelinin onayı gerekmektedir.</li>
-    <li>Daha önce kayıtlı bir e-posta var ise kayıt gerçekleşmez. Kullanıcı bilgilendirilir.</li>
-</ul>
-
-#### <span style="color:#FF0048FF;">Req 3 : Sisteme genel iş pozisyonu isimleri eklenebilmelidir.</span>
-
-<ul style="color: #92c3ff">
-    <li>Bu pozisyonlar tekrar edemez. Kullanıcı uyarılır.</li>
-</ul>
-
-#### <span style="color:#FF0048FF;">Req 4 : İş verenler listelenebilmelidir. (Sadece tüm liste)</span>
-
-#### <span style="color:#FF0048FF;">Req 5 : İş arayanlar listelenebilmelidir. (Sadece tüm liste)</span>
-
-#### <span style="color:#FF0048FF;">Req 6 : İş pozisyonları listelenebilmelidir. (Sadece tüm liste)</span>
-
-### <span style="color:#FF0048FF;">Req 7 : İş verenler sisteme iş ilanı ekleyebilmelidir.</span>
-
-<ul style="color: #92c3ff">
-    <li>İş ilanı formunda; Seçilebilir listeden (dropdown) genel iş pozisyonu seçilebilmelidir.(Örneğin Java Developer)(Zorunlu)</li>
-    <li>İş tanımı girişi yapılabilmelidir. (Örneğin; firmamız için JAVA, C# vb. dillere hakim....)(Zorunlu)</li>
-    <li>Şehir bilgisi açılır listeden seçilebilmelidir. (Zorunlu)</li>
-    <li>Maaş skalası için min-max girişi yapılabilmelidir. (Opsiyonel)</li>
-    <li>Açık pozisyon adedi girişi yapılabilmelidir. (Zorunlu)</li>
-    <li>Son başvuru tarihi girişi yapılabilmelidir.</li>
-</ul>
-
-### <span style="color:#FF0048FF;">Req 8 : Sistemdeki tüm aktif iş ilanları listelenebilmelidir.</span>
-
-<ul style="color: #92c3ff">
-    <li>Liste, tablo formunda gelmelidir.</li>
-    <li>Listede firmadı, genel iş pozisyonu adı, açık pozisyon adedi, yayın tarihi, son başvuru tarihi bilgileri olmalıdır.</li>
-</ul>
-
-### <span style="color:#FF0048FF;">Req 9 : Sistemdeki tüm aktif iş ilanları tarihe göre listelenebilmelidir.</span>
-
-<ul style="color: #92c3ff">
-    <li>Liste, tablo formunda gelmelidir.</li>
-    <li>Listede firmadı, genel iş pozisyonu adı, açık pozisyon adedi, yayın tarihi, son başvuru tarihi bilgileri olmalıdır.</li>
-</ul>
-
-### <span style="color:#FF0048FF;">Req 10 : Sistemde bir firmaya ait tüm aktif iş ilanları listelenebilmelidir.</span>
-
-<ul style="color: #92c3ff">
-    <li>Liste, tablo formunda gelmelidir.</li>
-    <li>Listede firmadı, genel iş pozisyonu adı, açık pozisyon adedi, yayın tarihi, son başvuru tarihi bilgileri olmalıdır.</li>
-</ul>
-
-### <span style="color:#FF0048FF;">Req 11 : İş verenler sistemdeki bir ilanı kapatabilmelidir.</span>
-
-### <span style="color:#FF0048FF;">Req 12: Adaylar sisteme CV girişi yapabilmelidir.</span>
-
-### <span style="color:#FF0048FF;">Req 13 : Bir adaya ait tüm CV bilgisi görüntülenebilmelidir.</span>
+<h2>
+İnsan Kaynakları Yönetim Sistemi
+</h2>
+<p>
+Bu proje <a href="https://www.kodlama.io/courses/1332369/author_bio">
+Engin Demiroğ'</a> un Java-React kampı için geliştirilmiştir.
+</p>
 
 ### <span style="color:#b453ff;">Kurumsal Mimari</span>
 
 [comment]: <> (![mm]&#40;https://user-images.githubusercontent.com/61664693/117733028-8a49d680-b1f9-11eb-9e88-d4950a59ca08.png&#41;)
-![Screenshot_5](https://user-images.githubusercontent.com/61664693/119628050-6c918980-be15-11eb-8a1c-2c35b97d406e.png)
+![Screenshot_1](https://user-images.githubusercontent.com/61664693/123968088-995e3100-d9bf-11eb-9c08-e6270b49e62f.png)

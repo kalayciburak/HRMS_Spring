@@ -1,4 +1,7 @@
-<b>Database created with <a src="www.github.com/8CA5F">Emin Ümüt Erarslan</a></b>
+### Pair Programming
+
+<b>Database created with <a href="https://github.com/8CA5F" target="_blank">Emin Ümüt Erarslan</a>
+a.k.a<a href="https://github.com/8CA5F" target="_blank"> 8CA5F</a></b>
 
 # Database Diagram
 
