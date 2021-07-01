@@ -21,6 +21,8 @@ public interface JobAdvertService {
 
     DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageAsc(int pageNo, int pageSize);
 
+    DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrue();
+
     DataResult<JobAdvert> getJobAdvertById(int jobAdvertId);
 
     Result changeIsActive(boolean active, int jobAdvertId);

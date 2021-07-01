@@ -119,6 +119,19 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
+    public DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrue() {
+        if (this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue().size() > 0) {
+            return new SuccessDataResult<>(
+                    this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(),
+                    "Success: Onaylı ve Aktif tüm iş ilanları yayınlanma tarihine göre artarak listelendi!");
+        }
+
+        return new WarningDataResult<>(
+                this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndIsConfirmedTrue(),
+                "Warning: Onaylı ve Aktif iş ilanı bulunamadı!");
+    }
+
+    @Override
     public DataResult<JobAdvert> getJobAdvertById(int jobAdvertId) {
         if (this.jobAdvertsDao.getJobAdvertById(jobAdvertId) == null) {
             return new WarningDataResult<>("Warning: Kayıtlı İş İlanı bulunamadı!");

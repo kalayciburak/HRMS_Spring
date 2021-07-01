@@ -19,6 +19,8 @@ public interface JobAdvertDao extends JpaRepository<JobAdvert, Integer> {
 
     List<JobAdvert> getJobAdvertByIsActiveTrueAndIsConfirmedTrue(Pageable pageable);
 
+    List<JobAdvert> getJobAdvertByIsActiveTrueAndIsConfirmedTrue();
+
     @Transactional
     @Modifying
     @Query("Update JobAdvert set isActive =:active where id =:jobAdvertId")
