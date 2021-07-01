@@ -3,8 +3,12 @@ package torukobyte.hrms.api.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import torukobyte.hrms.business.abstracts.SocialMediaService;
+import torukobyte.hrms.core.utilities.results.DataResult;
 import torukobyte.hrms.core.utilities.results.Result;
+import torukobyte.hrms.entities.concretes.SocialMedia;
 import torukobyte.hrms.entities.dtos.addDtos.SocialMediaAddDto;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/socialmedias")
@@ -16,6 +20,11 @@ public class SocialMediasController {
     @Autowired
     public SocialMediasController(SocialMediaService socialMediaService) {
         this.socialMediaService = socialMediaService;
+    }
+
+    @GetMapping("/getSocialMediaByCurriculaVitaeId")
+    public DataResult<List<SocialMedia>> getSocialMediaByCurriculaVitaeId(@RequestParam int cvId) {
+        return this.socialMediaService.getSocialMediaByCurriculaVitaeId(cvId);
     }
 
     @PostMapping("/addSocialMedia")

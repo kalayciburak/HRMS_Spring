@@ -4,11 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import torukobyte.hrms.business.abstracts.SocialMediaService;
 import torukobyte.hrms.core.dtoConverter.DtoConverterService;
-import torukobyte.hrms.core.utilities.results.Result;
-import torukobyte.hrms.core.utilities.results.SuccessResult;
+import torukobyte.hrms.core.utilities.results.*;
 import torukobyte.hrms.dataAccess.abstracts.SocialMediaDao;
 import torukobyte.hrms.entities.concretes.SocialMedia;
 import torukobyte.hrms.entities.dtos.addDtos.SocialMediaAddDto;
+
+import java.util.List;
 
 @Service
 public class SocialMediaManager implements SocialMediaService {
@@ -29,5 +30,16 @@ public class SocialMediaManager implements SocialMediaService {
                 socialMedia,
                 SocialMedia.class));
         return new SuccessResult("Success: Sosyal medya bağlantıları başarıyla sisteme eklendi!");
+    }
+
+    @Override
+    public DataResult<List<SocialMedia>> getSocialMediaByCurriculaVitaeId(int id) {
+        if (this.socialMediaDao.getSocialMediaByCurriculaVitaeId(id).isEmpty()) {
+            return new WarningDataResult<>("Warning: Listelenecek sosyal hesap bulunamadı!");
+        } else {
+            return new SuccessDataResult<>(
+                    this.socialMediaDao.getSocialMediaByCurriculaVitaeId(id),
+                    "Success: Sosyal hesaplar başarıyla listelendi!");
+        }
     }
 }
