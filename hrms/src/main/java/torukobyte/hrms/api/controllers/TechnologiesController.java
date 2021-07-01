@@ -2,7 +2,7 @@ package torukobyte.hrms.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import torukobyte.hrms.business.abstracts.TechnologieService;
+import torukobyte.hrms.business.abstracts.TechnologyService;
 import torukobyte.hrms.core.utilities.results.DataResult;
 import torukobyte.hrms.core.utilities.results.Result;
 import torukobyte.hrms.entities.concretes.Technology;
@@ -11,24 +11,29 @@ import torukobyte.hrms.entities.dtos.addDtos.TechnologyAddDto;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/programmingLanguages")
+@RequestMapping("/api/technologies")
 @CrossOrigin
 public class TechnologiesController {
 
-    private final TechnologieService technologieService;
+    private final TechnologyService technologyService;
 
     @Autowired
-    public TechnologiesController(TechnologieService technologieService) {
-        this.technologieService = technologieService;
+    public TechnologiesController(TechnologyService technologieService) {
+        this.technologyService = technologieService;
     }
 
-    @GetMapping("/getProgrammingLanguages")
-    public DataResult<List<Technology>> getProgrammingLanguages() {
-        return this.technologieService.getAllProgrammingLanguage();
+    @GetMapping("/getTechnologies")
+    public DataResult<List<Technology>> getTechnologies() {
+        return this.technologyService.getTechnologies();
     }
 
-    @PostMapping("/addProgrammingLanguage")
-    public Result addProgrammingLanguage(@RequestBody TechnologyAddDto pl) {
-        return this.technologieService.addProgrammingLanguage(pl);
+    @GetMapping("/getJobseekerLanguagesByCvId")
+    public DataResult<List<Technology>> getTechnologieByCurriculaVitaeId(@RequestParam int cvId) {
+        return this.technologyService.getTechnologieByCurriculaVitaeId(cvId);
+    }
+
+    @PostMapping("/addTechnology")
+    public Result addTechnology(@RequestBody TechnologyAddDto pl) {
+        return this.technologyService.addTechnology(pl);
     }
 }

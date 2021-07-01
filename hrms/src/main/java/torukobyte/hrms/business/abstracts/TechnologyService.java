@@ -7,8 +7,10 @@ import torukobyte.hrms.entities.dtos.addDtos.TechnologyAddDto;
 
 import java.util.List;
 
-public interface TechnologieService {
-    Result addProgrammingLanguage(TechnologyAddDto pl);
+public interface TechnologyService {
+    Result addTechnology(TechnologyAddDto pl);
 
-    DataResult<List<Technology>> getAllProgrammingLanguage();
+    DataResult<List<Technology>> getTechnologies();
+
+    DataResult<List<Technology>> getTechnologieByCurriculaVitaeId(int id);
 }
