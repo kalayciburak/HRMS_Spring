@@ -11,4 +11,6 @@ public interface JobExperienceService {
     Result addJobExperience(JobExperienceAddDto jobExperience);
 
     DataResult<List<JobExperience>> getJobExperienceByCvId(int id);
+
+    Result deleteJobExperienceById(int id);
 }

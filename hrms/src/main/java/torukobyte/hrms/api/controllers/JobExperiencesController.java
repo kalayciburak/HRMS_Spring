@@ -31,4 +31,9 @@ public class JobExperiencesController {
     public Result addJobExperience(@RequestBody JobExperienceAddDto jobExperience) {
         return this.jobExperienceService.addJobExperience(jobExperience);
     }
+
+    @DeleteMapping("/deleteJobExperienceById")
+    public Result deleteJobExperienceById(@RequestParam int id) {
+        return this.jobExperienceService.deleteJobExperienceById(id);
+    }
 }

@@ -53,4 +53,10 @@ public class EducationManager implements EducationService {
                     "Success: Eğitim geçmişi başarıyla sıralanıp listelendi!");
         }
     }
+
+    @Override
+    public Result deleteEducationById(int id) {
+        this.educationDao.deleteEducationById(id);
+        return new SuccessResult("Success: Eğitim bilgisi silindi!");
+    }
 }

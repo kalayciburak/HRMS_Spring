@@ -44,4 +44,10 @@ public class JobExperienceManager implements JobExperienceService {
                     "Success: İş tecrübeleri başarıyla sıralanıp listelendi!");
         }
     }
+
+    @Override
+    public Result deleteJobExperienceById(int id) {
+        this.jobExperienceDao.deleteJobExperienceById(id);
+        return new SuccessResult("Success: İş geçmişi silindi!");
+    }
 }

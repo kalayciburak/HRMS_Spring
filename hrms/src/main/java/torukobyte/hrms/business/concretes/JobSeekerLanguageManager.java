@@ -44,4 +44,10 @@ public class JobSeekerLanguageManager implements JobSeekerLanguageService {
                     "Success: Yabancı diller başarıyla listelendi!");
         }
     }
+
+    @Override
+    public Result deleteJobSeekerLanguageById(int id) {
+        this.jobSeekerLanguageDao.deleteJobSeekerLanguageById(id);
+        return new SuccessResult("Success: Yabancı dil bilgisi silindi!");
+    }
 }

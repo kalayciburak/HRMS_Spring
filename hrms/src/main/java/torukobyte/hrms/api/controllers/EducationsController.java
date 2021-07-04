@@ -35,4 +35,9 @@ public class EducationsController {
     public Result addEducation(@RequestBody EducationAddDto education) {
         return this.educationService.addEducation(education);
     }
+
+    @DeleteMapping("/deleteEducationById")
+    public Result deleteEducationById(@RequestParam int id) {
+        return this.educationService.deleteEducationById(id);
+    }
 }
