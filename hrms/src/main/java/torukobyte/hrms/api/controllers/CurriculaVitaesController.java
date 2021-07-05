@@ -7,6 +7,7 @@ import torukobyte.hrms.core.utilities.results.DataResult;
 import torukobyte.hrms.core.utilities.results.Result;
 import torukobyte.hrms.entities.concretes.CurriculaVitae;
 import torukobyte.hrms.entities.dtos.addDtos.CurriculaVitaeAddDto;
+import torukobyte.hrms.entities.dtos.ıpdateDtos.CurriculaVitaeUpdateDto;
 
 import java.io.IOException;
 
@@ -37,7 +38,7 @@ public class CurriculaVitaesController {
     }
 
     @PutMapping("/updateCv")
-    public Result updateCv(@RequestBody CurriculaVitae curriculaVitae) {
+    public Result updateCv(@RequestBody CurriculaVitaeUpdateDto curriculaVitae) {
         return this.curriculaVitaeService.updateCv(curriculaVitae);
     }
 

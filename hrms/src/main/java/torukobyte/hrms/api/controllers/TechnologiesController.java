@@ -7,6 +7,7 @@ import torukobyte.hrms.core.utilities.results.DataResult;
 import torukobyte.hrms.core.utilities.results.Result;
 import torukobyte.hrms.entities.concretes.Technology;
 import torukobyte.hrms.entities.dtos.addDtos.TechnologyAddDto;
+import torukobyte.hrms.entities.dtos.ıpdateDtos.TechnologyUpdateDto;
 
 import java.util.List;
 
@@ -35,5 +36,10 @@ public class TechnologiesController {
     @PostMapping("/addTechnology")
     public Result addTechnology(@RequestBody TechnologyAddDto pl) {
         return this.technologyService.addTechnology(pl);
+    }
+
+    @PutMapping("/updateTechnology")
+    public Result updateTechnology(@RequestBody TechnologyUpdateDto pl) {
+        return this.technologyService.updateTechnology(pl);
     }
 }

@@ -8,6 +8,7 @@ import torukobyte.hrms.core.utilities.results.*;
 import torukobyte.hrms.dataAccess.abstracts.TechnologyDao;
 import torukobyte.hrms.entities.concretes.Technology;
 import torukobyte.hrms.entities.dtos.addDtos.TechnologyAddDto;
+import torukobyte.hrms.entities.dtos.ıpdateDtos.TechnologyUpdateDto;
 
 import java.util.List;
 
@@ -28,6 +29,12 @@ public class TechnologyManager implements TechnologyService {
     public Result addTechnology(TechnologyAddDto pl) {
         this.technologieDao.save((Technology) this.dtoConverterService.dtoClassConverter(pl, Technology.class));
         return new SuccessResult("Success: Programlama dili başarıyla eklendi!");
+    }
+
+    @Override
+    public Result updateTechnology(TechnologyUpdateDto pl) {
+        this.technologieDao.save((Technology) this.dtoConverterService.dtoClassConverter(pl, Technology.class));
+        return new SuccessResult("Success: Programlama dili başarıyla güncellendi!");
     }
 
     @Override

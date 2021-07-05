@@ -10,6 +10,7 @@ import torukobyte.hrms.core.utilities.results.*;
 import torukobyte.hrms.dataAccess.abstracts.CurriculaVitaeDao;
 import torukobyte.hrms.entities.concretes.CurriculaVitae;
 import torukobyte.hrms.entities.dtos.addDtos.CurriculaVitaeAddDto;
+import torukobyte.hrms.entities.dtos.ıpdateDtos.CurriculaVitaeUpdateDto;
 
 import java.io.IOException;
 
@@ -35,16 +36,36 @@ public class CurriculaVitaeManager implements CurriculaVitaeService {
 
     @Override
     public Result addCv(CurriculaVitaeAddDto curriculaVitae) {
-        this.curriculaVitaeDao.save((CurriculaVitae) this.dtoConverterService.dtoClassConverter(
-                curriculaVitae,
-                CurriculaVitae.class));
-        return new SuccessResult("Success: Cv başarıyla eklendi!");
+        if (curriculaVitae.getPictureUrl().equals("")) {
+            curriculaVitae.setPictureUrl(
+                    "https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png");
+            this.curriculaVitaeDao.save((CurriculaVitae) this.dtoConverterService.dtoClassConverter(
+                    curriculaVitae,
+                    CurriculaVitae.class));
+            return new SuccessResult("Success: Cv başarıyla eklendi!");
+        } else {
+            this.curriculaVitaeDao.save((CurriculaVitae) this.dtoConverterService.dtoClassConverter(
+                    curriculaVitae,
+                    CurriculaVitae.class));
+            return new SuccessResult("Success: Cv başarıyla eklendi!");
+        }
     }
 
     @Override
-    public Result updateCv(CurriculaVitae curriculaVitae) {
-        this.curriculaVitaeDao.save(curriculaVitae);
-        return new SuccessResult("Success: Cv başarıyla güncellendi!");
+    public Result updateCv(CurriculaVitaeUpdateDto curriculaVitae) {
+        if (curriculaVitae.getPictureUrl().equals("")) {
+            curriculaVitae.setPictureUrl(
+                    "https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png");
+            this.curriculaVitaeDao.save((CurriculaVitae) this.dtoConverterService.dtoClassConverter(
+                    curriculaVitae,
+                    CurriculaVitae.class));
+            return new SuccessResult("Success: Cv başarıyla güncellendi!");
+        } else {
+            this.curriculaVitaeDao.save((CurriculaVitae) this.dtoConverterService.dtoClassConverter(
+                    curriculaVitae,
+                    CurriculaVitae.class));
+            return new SuccessResult("Success: Cv başarıyla güncellendi!");
+        }
     }
 
 //    @Override

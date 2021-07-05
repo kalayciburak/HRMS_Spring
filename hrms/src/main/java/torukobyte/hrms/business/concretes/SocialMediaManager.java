@@ -8,6 +8,7 @@ import torukobyte.hrms.core.utilities.results.*;
 import torukobyte.hrms.dataAccess.abstracts.SocialMediaDao;
 import torukobyte.hrms.entities.concretes.SocialMedia;
 import torukobyte.hrms.entities.dtos.addDtos.SocialMediaAddDto;
+import torukobyte.hrms.entities.dtos.ıpdateDtos.SocialMediaUpdateDto;
 
 import java.util.List;
 
@@ -30,6 +31,14 @@ public class SocialMediaManager implements SocialMediaService {
                 socialMedia,
                 SocialMedia.class));
         return new SuccessResult("Success: Sosyal medya bağlantıları başarıyla sisteme eklendi!");
+    }
+
+    @Override
+    public Result updateSocialMedia(SocialMediaUpdateDto socialMedia) {
+        this.socialMediaDao.save((SocialMedia) this.dtoConverterService.dtoClassConverter(
+                socialMedia,
+                SocialMedia.class));
+        return new SuccessResult("Success: Sosyal medya bağlantıları başarıyla güncellendi!");
     }
 
     @Override

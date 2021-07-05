@@ -5,6 +5,7 @@ import torukobyte.hrms.core.utilities.results.DataResult;
 import torukobyte.hrms.core.utilities.results.Result;
 import torukobyte.hrms.entities.concretes.CurriculaVitae;
 import torukobyte.hrms.entities.dtos.addDtos.CurriculaVitaeAddDto;
+import torukobyte.hrms.entities.dtos.ıpdateDtos.CurriculaVitaeUpdateDto;
 
 import java.io.IOException;
 
@@ -12,7 +13,7 @@ public interface CurriculaVitaeService {
 
     Result addCv(CurriculaVitaeAddDto curriculaVitae);
 
-    Result updateCv(CurriculaVitae curriculaVitae);
+    Result updateCv(CurriculaVitaeUpdateDto curriculaVitae);
 
 
 //    DataResult<List<JobseekerWithCurriculaVitaeDto>> getJobSeekerWithCurriculaVitae(int id);
