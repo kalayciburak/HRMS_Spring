@@ -38,6 +38,12 @@ public class TechnologyManager implements TechnologyService {
     }
 
     @Override
+    public Result deleteTechnologyById(int id) {
+        this.technologieDao.deleteTechnologyById(id);
+        return new SuccessResult("Success: Teknoloji bilgisi silindi!");
+    }
+
+    @Override
     public DataResult<List<Technology>> getTechnologies() {
         if (this.technologieDao.findAll().isEmpty()) {
             return new WarningDataResult<>("Warning: Kayıtlı bir programlama dili yok!");

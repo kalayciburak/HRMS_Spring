@@ -31,8 +31,8 @@ public class CurriculaVitae {
     @JoinColumn(name = "jobseeker_id")
     private JobSeeker jobSeeker;
 
-    @OneToMany(mappedBy = "curriculaVitae", cascade = CascadeType.DETACH)
-    private List<SocialMedia> socialMedias;
+    @OneToOne(mappedBy = "curriculaVitae", cascade = CascadeType.DETACH)
+    private SocialMedia socialMedia;
 
     @OneToMany(mappedBy = "curriculaVitae", cascade = CascadeType.DETACH)
     private List<Education> educations;

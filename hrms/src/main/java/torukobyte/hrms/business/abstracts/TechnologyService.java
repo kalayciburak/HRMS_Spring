@@ -13,6 +13,8 @@ public interface TechnologyService {
 
     Result updateTechnology(TechnologyUpdateDto pl);
 
+    Result deleteTechnologyById(int id);
+
     DataResult<List<Technology>> getTechnologies();
 
     DataResult<List<Technology>> getTechnologieByCurriculaVitaeId(int id);

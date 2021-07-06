@@ -9,8 +9,6 @@ import torukobyte.hrms.entities.concretes.SocialMedia;
 import torukobyte.hrms.entities.dtos.addDtos.SocialMediaAddDto;
 import torukobyte.hrms.entities.dtos.ıpdateDtos.SocialMediaUpdateDto;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/socialmedias")
 @CrossOrigin
@@ -24,7 +22,7 @@ public class SocialMediasController {
     }
 
     @GetMapping("/getSocialMediaByCurriculaVitaeId")
-    public DataResult<List<SocialMedia>> getSocialMediaByCurriculaVitaeId(@RequestParam int cvId) {
+    public DataResult<SocialMedia> getSocialMediaByCurriculaVitaeId(@RequestParam int cvId) {
         return this.socialMediaService.getSocialMediaByCurriculaVitaeId(cvId);
     }
 

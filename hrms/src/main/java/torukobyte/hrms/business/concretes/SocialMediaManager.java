@@ -10,8 +10,6 @@ import torukobyte.hrms.entities.concretes.SocialMedia;
 import torukobyte.hrms.entities.dtos.addDtos.SocialMediaAddDto;
 import torukobyte.hrms.entities.dtos.ıpdateDtos.SocialMediaUpdateDto;
 
-import java.util.List;
-
 @Service
 public class SocialMediaManager implements SocialMediaService {
 
@@ -42,8 +40,8 @@ public class SocialMediaManager implements SocialMediaService {
     }
 
     @Override
-    public DataResult<List<SocialMedia>> getSocialMediaByCurriculaVitaeId(int id) {
-        if (this.socialMediaDao.getSocialMediaByCurriculaVitaeId(id).isEmpty()) {
+    public DataResult<SocialMedia> getSocialMediaByCurriculaVitaeId(int id) {
+        if (this.socialMediaDao.getSocialMediaByCurriculaVitaeId(id) == null) {
             return new WarningDataResult<>("Warning: Listelenecek sosyal hesap bulunamadı!");
         } else {
             return new SuccessDataResult<>(

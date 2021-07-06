@@ -42,4 +42,9 @@ public class TechnologiesController {
     public Result updateTechnology(@RequestBody TechnologyUpdateDto pl) {
         return this.technologyService.updateTechnology(pl);
     }
+
+    @DeleteMapping("/deleteTechnologyById")
+    public Result deleteTechnologyById(@RequestParam int id) {
+        return this.technologyService.deleteTechnologyById(id);
+    }
 }
