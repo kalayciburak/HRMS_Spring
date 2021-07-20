@@ -8,7 +8,7 @@ import torukobyte.hrms.core.utilities.results.*;
 import torukobyte.hrms.dataAccess.abstracts.TechnologyDao;
 import torukobyte.hrms.entities.concretes.Technology;
 import torukobyte.hrms.entities.dtos.addDtos.TechnologyAddDto;
-import torukobyte.hrms.entities.dtos.ıpdateDtos.TechnologyUpdateDto;
+import torukobyte.hrms.entities.dtos.updateDtos.TechnologyUpdateDto;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package torukobyte.hrms.entities.dtos.ıpdateDtos;
+package torukobyte.hrms.entities.dtos.updateDtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

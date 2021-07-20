@@ -3,6 +3,7 @@ package torukobyte.hrms.business.abstracts;
 import torukobyte.hrms.core.utilities.results.DataResult;
 import torukobyte.hrms.core.utilities.results.Result;
 import torukobyte.hrms.entities.concretes.JobAdvert;
+import torukobyte.hrms.entities.dtos.addDtos.JobAdvertAddDto;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public interface JobAdvertService {
 
     Result changeIsConfirmed(boolean confirm, int jobAdvertId);
 
-    Result addJobAdvert(JobAdvert jobAdvert);
+    Result addJobAdvert(JobAdvertAddDto jobAdvert);
 
     Result deleteJobAdvertById(int jobAdvertId);
 

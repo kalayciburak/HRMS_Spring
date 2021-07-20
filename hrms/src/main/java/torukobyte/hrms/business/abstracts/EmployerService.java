@@ -20,4 +20,8 @@ public interface EmployerService {
     DataResult<Employer> getEmployerById(int employerId);
 
     Result uploadPicture(int employerId, MultipartFile file) throws IOException;
+
+    Result changeIsUpdated(boolean update, int employerId);
+
+    DataResult<List<Employer>> getEmployerByUpdatedTrue();
 }

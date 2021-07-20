@@ -128,4 +128,17 @@ public class EmployerManager implements EmployerService {
 
         return new SuccessResult("Success: Resim ekleme işlemi başarılı!");
     }
+
+    @Override
+    public Result changeIsUpdated(boolean update, int employerId) {
+        this.employerDao.changeIsUpdated(update, employerId);
+        return new SuccessResult("Success: Şirket bilgilerini güncelledi!");
+    }
+
+    @Override
+    public DataResult<List<Employer>> getEmployerByUpdatedTrue() {
+        return new SuccessDataResult<>(
+                this.employerDao.getEmployerByIsUpdatedTrue(),
+                "Success: Bilgilerini güncellemek isteyen şirketler başarıyla listelendi!");
+    }
 }

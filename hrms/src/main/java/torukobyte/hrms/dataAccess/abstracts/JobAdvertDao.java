@@ -13,7 +13,7 @@ import java.util.List;
 public interface JobAdvertDao extends JpaRepository<JobAdvert, Integer> {
     List<JobAdvert> findAllByIsActiveTrue();
 
-    List<JobAdvert> getJobAdvertByIsActiveTrueAndEmployer_CompanyName(String companyName);
+    List<JobAdvert> getJobAdvertByEmployer_CompanyName(String companyName);
 
     List<JobAdvert> findAllByIsActiveTrue(Sort sort);
 

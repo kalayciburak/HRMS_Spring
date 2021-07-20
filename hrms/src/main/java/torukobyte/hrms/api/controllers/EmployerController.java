@@ -58,6 +58,11 @@ public class EmployerController {
         return this.jobAdvertService.changeIsActive(active, jobAdvertId);
     }
 
+    @PostMapping("/changeIsUpdated")
+    public Result changeIsUpdated(@RequestParam boolean update, int employerId) {
+        return this.employerService.changeIsUpdated(update, employerId);
+    }
+
     @PostMapping("/addPicture")
     public Result addPicture(int employerId, MultipartFile file) throws IOException {
         return this.employerService.uploadPicture(employerId, file);

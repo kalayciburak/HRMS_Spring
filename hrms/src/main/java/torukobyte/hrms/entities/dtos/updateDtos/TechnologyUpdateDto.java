@@ -1,4 +1,4 @@
-package torukobyte.hrms.entities.dtos.ıpdateDtos;
+package torukobyte.hrms.entities.dtos.updateDtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SocialMediaUpdateDto {
+public class TechnologyUpdateDto {
     private int id;
     private int curriculaVitaeId;
-    private String githubUsername;
-    private String linkedinUsername;
+    private String plName;
 }

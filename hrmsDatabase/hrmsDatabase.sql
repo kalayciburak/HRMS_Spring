@@ -29,6 +29,7 @@ CREATE TABLE public.employers
     website      CHARACTER VARYING(255) NOT NULL,
     phone_number CHARACTER VARYING(12)  NOT NULL,
     picture_url  CHARACTER VARYING(500),
+    is_updated   boolean                NOT NULL,
     CONSTRAINT pk_employers PRIMARY KEY (user_id),
     CONSTRAINT fk_employers_users FOREIGN KEY (user_id) REFERENCES public.users (id) ON DELETE CASCADE,
     CONSTRAINT uc_employers_company_name UNIQUE (company_name)
@@ -1166,16 +1167,22 @@ VALUES (1, 'Burak', 'Kalaycı', '11111111111', '1996-05-23'),
        (8, 'Mecnun', 'Çınar', '11111111118', '1975-02-15');
 
 INSERT INTO employers
-VALUES (9, 'Google', 'www.google.com', '444 1 444', 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png'),
+VALUES (9, 'Google', 'www.google.com', '444 1 444',
+        'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png', false),
        (10, 'Facebook', 'www.facebook.com', '444 2 444',
-        'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png'),
-       (11, 'Twitter', 'www.twitter.com', '444 3 444', 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png'),
-       (12, 'Apple', 'www.apple.com', '444 4 444', 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png'),
+        'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png', false),
+       (11, 'Twitter', 'www.twitter.com', '444 3 444',
+        'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png', false),
+       (12, 'Apple', 'www.apple.com', '444 4 444',
+        'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png', false),
        (13, 'Microsoft', 'www.microsoft.com', '444 5 444',
-        'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png'),
-       (14, 'Samsung', 'www.samsung.com', '444 6 444', 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png'),
-       (15, 'Github', 'www.github.com', '444 7 444', 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png'),
-       (16, 'Lenovo', 'www.lenovo.com', '444 8 444', 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png');
+        'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png', false),
+       (14, 'Samsung', 'www.samsung.com', '444 6 444',
+        'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png', false),
+       (15, 'Github', 'www.github.com', '444 7 444',
+        'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png', false),
+       (16, 'Lenovo', 'www.lenovo.com', '444 8 444',
+        'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png', false);
 
 INSERT INTO system_personels
 VALUES (17, 'angryblonde'),

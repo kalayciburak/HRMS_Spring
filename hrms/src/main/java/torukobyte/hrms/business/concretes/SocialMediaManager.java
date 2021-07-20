@@ -8,7 +8,7 @@ import torukobyte.hrms.core.utilities.results.*;
 import torukobyte.hrms.dataAccess.abstracts.SocialMediaDao;
 import torukobyte.hrms.entities.concretes.SocialMedia;
 import torukobyte.hrms.entities.dtos.addDtos.SocialMediaAddDto;
-import torukobyte.hrms.entities.dtos.ıpdateDtos.SocialMediaUpdateDto;
+import torukobyte.hrms.entities.dtos.updateDtos.SocialMediaUpdateDto;
 
 @Service
 public class SocialMediaManager implements SocialMediaService {

@@ -6,9 +6,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import torukobyte.hrms.business.abstracts.JobAdvertService;
+import torukobyte.hrms.core.dtoConverter.DtoConverterService;
 import torukobyte.hrms.core.utilities.results.*;
 import torukobyte.hrms.dataAccess.abstracts.JobAdvertDao;
 import torukobyte.hrms.entities.concretes.JobAdvert;
+import torukobyte.hrms.entities.dtos.addDtos.JobAdvertAddDto;
 
 import java.util.List;
 
@@ -16,9 +18,12 @@ import java.util.List;
 public class JobAdvertManager implements JobAdvertService {
     private final JobAdvertDao jobAdvertsDao;
 
+    private final DtoConverterService dtoConverterService;
+
     @Autowired
-    public JobAdvertManager(JobAdvertDao jobAdvertsDao) {
+    public JobAdvertManager(JobAdvertDao jobAdvertsDao, DtoConverterService dtoConverterService) {
         this.jobAdvertsDao = jobAdvertsDao;
+        this.dtoConverterService = dtoConverterService;
     }
 
     @Override
@@ -51,12 +56,12 @@ public class JobAdvertManager implements JobAdvertService {
 
     @Override
     public DataResult<List<JobAdvert>> getJobAdvertByCompanyName(String companyName) {
-        if ((long) this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndEmployer_CompanyName(companyName).size() > 0) {
-            return new SuccessDataResult<>(this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndEmployer_CompanyName(
+        if ((long) this.jobAdvertsDao.getJobAdvertByEmployer_CompanyName(companyName).size() > 0) {
+            return new SuccessDataResult<>(this.jobAdvertsDao.getJobAdvertByEmployer_CompanyName(
                     companyName), "Success: Şirket'e ait tüm ilanlar listelendi!");
         }
         return new WarningDataResult<>(
-                this.jobAdvertsDao.getJobAdvertByIsActiveTrueAndEmployer_CompanyName(companyName),
+                this.jobAdvertsDao.getJobAdvertByEmployer_CompanyName(companyName),
                 "Şirket'e ait herhangi bir ilan bulunamadı!");
 
     }
@@ -155,8 +160,10 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
-    public Result addJobAdvert(JobAdvert jobAdvert) {
-        this.jobAdvertsDao.save(jobAdvert);
+    public Result addJobAdvert(JobAdvertAddDto jobAdvert) {
+        this.jobAdvertsDao.save((JobAdvert) this.dtoConverterService.dtoClassConverter(
+                jobAdvert,
+                JobAdvertAddDto.class));
         return new SuccessResult("Success: İlan sisteme eklendi!");
     }
 

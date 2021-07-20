@@ -6,6 +6,7 @@ import torukobyte.hrms.business.abstracts.JobAdvertService;
 import torukobyte.hrms.core.utilities.results.DataResult;
 import torukobyte.hrms.core.utilities.results.Result;
 import torukobyte.hrms.entities.concretes.JobAdvert;
+import torukobyte.hrms.entities.dtos.addDtos.JobAdvertAddDto;
 
 import java.util.List;
 
@@ -76,7 +77,7 @@ public class JobAdvertsController {
     }
 
     @PostMapping("/addJobadvert")
-    public Result addJobAdverts(@RequestBody JobAdvert jobAdvert) {
+    public Result addJobAdverts(@RequestBody JobAdvertAddDto jobAdvert) {
         return this.jobAdvertService.addJobAdvert(jobAdvert);
     }
 

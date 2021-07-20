@@ -10,7 +10,7 @@ import torukobyte.hrms.core.utilities.results.*;
 import torukobyte.hrms.dataAccess.abstracts.CurriculaVitaeDao;
 import torukobyte.hrms.entities.concretes.CurriculaVitae;
 import torukobyte.hrms.entities.dtos.addDtos.CurriculaVitaeAddDto;
-import torukobyte.hrms.entities.dtos.ıpdateDtos.CurriculaVitaeUpdateDto;
+import torukobyte.hrms.entities.dtos.updateDtos.CurriculaVitaeUpdateDto;
 
 import java.io.IOException;
 
