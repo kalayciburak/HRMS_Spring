@@ -1191,14 +1191,22 @@ VALUES (17, 'angryblonde'),
 
 INSERT INTO curricula_vitaes
     OVERRIDING SYSTEM VALUE
-VALUES (1, 1, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Burak ile ilgili önsöz..'),
-       (2, 2, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Ayşe ile ilgili önsöz..'),
-       (3, 3, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Ela ile ilgili önsöz..'),
-       (4, 4, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Ali ile ilgili önsöz..'),
-       (5, 5, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Ahmet ile ilgili önsöz..'),
-       (6, 6, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'İrem ile ilgili önsöz..'),
-       (7, 7, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Leyla ile ilgili önsöz..'),
-       (8, 8, 'https://i.ibb.co/D5nfGGh/Person-595b40b75ba036ed117da139.png', 'Mecnun ile ilgili önsöz..');
+VALUES (1, 1, 'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png',
+        'Burak ile ilgili önsöz..'),
+       (2, 2, 'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png',
+        'Ayşe ile ilgili önsöz..'),
+       (3, 3, 'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png',
+        'Ela ile ilgili önsöz..'),
+       (4, 4, 'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png',
+        'Ali ile ilgili önsöz..'),
+       (5, 5, 'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png',
+        'Ahmet ile ilgili önsöz..'),
+       (6, 6, 'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png',
+        'İrem ile ilgili önsöz..'),
+       (7, 7, 'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png',
+        'Leyla ile ilgili önsöz..'),
+       (8, 8, 'https://res.cloudinary.com/torukobyte/image/upload/v1623515256/customer_rca6tq.png',
+        'Mecnun ile ilgili önsöz..');
 
 INSERT INTO social_medias
     OVERRIDING SYSTEM VALUE

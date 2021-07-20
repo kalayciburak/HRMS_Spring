@@ -41,6 +41,11 @@ public class JobAdvertsController {
         return this.jobAdvertService.getJobAdvertByCompanyName(companyName);
     }
 
+    @GetMapping("/getJobAdvertByEmployerId")
+    public DataResult<List<JobAdvert>> getJobAdvertByEmployerId(int employerId) {
+        return this.jobAdvertService.getJobAdvertByEmployerId(employerId);
+    }
+
     @GetMapping("/getActiveJobAdvertsSorted")
     public DataResult<List<JobAdvert>> findAllByIsActiveTrueSorted(@RequestParam boolean isDesc) {
         return this.jobAdvertService.findAllByIsActiveTrue(isDesc);

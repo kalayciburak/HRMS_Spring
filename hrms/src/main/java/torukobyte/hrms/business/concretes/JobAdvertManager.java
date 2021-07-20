@@ -56,14 +56,27 @@ public class JobAdvertManager implements JobAdvertService {
 
     @Override
     public DataResult<List<JobAdvert>> getJobAdvertByCompanyName(String companyName) {
-        if ((long) this.jobAdvertsDao.getJobAdvertByEmployer_CompanyName(companyName).size() > 0) {
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+        if ((long) this.jobAdvertsDao.getJobAdvertByEmployer_CompanyName(companyName, sort).size() > 0) {
             return new SuccessDataResult<>(this.jobAdvertsDao.getJobAdvertByEmployer_CompanyName(
-                    companyName), "Success: Şirket'e ait tüm ilanlar listelendi!");
+                    companyName, sort), "Success: Şirket'e ait tüm ilanlar listelendi!");
         }
         return new WarningDataResult<>(
-                this.jobAdvertsDao.getJobAdvertByEmployer_CompanyName(companyName),
+                this.jobAdvertsDao.getJobAdvertByEmployer_CompanyName(companyName, sort),
                 "Şirket'e ait herhangi bir ilan bulunamadı!");
 
+    }
+
+    @Override
+    public DataResult<List<JobAdvert>> getJobAdvertByEmployerId(int employerId) {
+        Sort sort = Sort.by(Sort.Direction.ASC, "isConfirmed", "id");
+        if ((long) this.jobAdvertsDao.getJobAdvertByEmployerId(employerId, sort).size() > 0) {
+            return new SuccessDataResult<>(this.jobAdvertsDao.getJobAdvertByEmployerId(
+                    employerId, sort), "Success: Şirket'e ait tüm ilanlar listelendi!");
+        }
+        return new WarningDataResult<>(
+                this.jobAdvertsDao.getJobAdvertByEmployerId(employerId, sort),
+                "Şirket'e ait herhangi bir ilan bulunamadı!");
     }
 
     @Override
