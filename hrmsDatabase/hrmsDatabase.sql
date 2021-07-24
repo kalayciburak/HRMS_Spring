@@ -36,6 +36,21 @@ CREATE TABLE public.employers
 
 );
 
+CREATE TABLE public.employers_update
+(
+    id           INTEGER                NOT NULL,
+    company_name CHARACTER VARYING(255) NOT NULL,
+    website      CHARACTER VARYING(255) NOT NULL,
+    phone_number CHARACTER VARYING(12)  NOT NULL,
+    email        CHARACTER VARYING(320) NOT NULL,
+    password     CHARACTER VARYING(25)  NOT NULL,
+    picture_url  CHARACTER VARYING(500),
+    CONSTRAINT pk_employers_update PRIMARY KEY (id),
+    CONSTRAINT uc_employers_update_company_name UNIQUE (company_name),
+    CONSTRAINT uc_employer_update_email UNIQUE (email)
+
+);
+
 CREATE TABLE public.system_personels
 (
     user_id  INTEGER               NOT NULL,
