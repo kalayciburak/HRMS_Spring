@@ -37,6 +37,12 @@ public class FavoriteManager implements FavoriteService {
     }
 
     @Override
+    public Result deleteFavoriteByJobSeekerIdAndJobAdvertId(int jobSeekerId, int jobAdvertId) {
+        this.favoriteDao.deleteFavoriteByJobSeekerIdAndJobAdvertId(jobSeekerId, jobAdvertId);
+        return new SuccessResult("Success: Favori başarıyla kaldırıldı!");
+    }
+
+    @Override
     public DataResult<List<Favorite>> getFavorites() {
         if (this.favoriteDao.findAll().size() > 0) {
             return new SuccessDataResult<>(this.favoriteDao.findAll(), "Success: Favoriler başarıyla listelendi!");

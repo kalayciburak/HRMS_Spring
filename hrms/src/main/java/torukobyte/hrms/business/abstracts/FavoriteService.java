@@ -12,6 +12,8 @@ public interface FavoriteService {
 
     Result deleteFavorite(int id);
 
+    Result deleteFavoriteByJobSeekerIdAndJobAdvertId(int jobSeekerId, int jobAdvertId);
+
     DataResult<List<Favorite>> getFavorites();
 
     DataResult<List<Favorite>> getFavoriteById(int id);

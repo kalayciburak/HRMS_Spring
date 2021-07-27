@@ -40,5 +40,10 @@ public class FavoritesContoller {
         return this.favoriteService.deleteFavorite(id);
     }
 
+    @DeleteMapping("/deleteFavoriteByJobSeekerIdAndJobAdvertId")
+    public Result deleteFavoriteByJobSeekerIdAndJobAdvertId(@RequestParam int jobSeekerId, int jobAdvertId) {
+        return this.favoriteService.deleteFavoriteByJobSeekerIdAndJobAdvertId(jobSeekerId, jobAdvertId);
+    }
+
 
 }
