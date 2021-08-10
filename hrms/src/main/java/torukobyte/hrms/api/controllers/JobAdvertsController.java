@@ -56,6 +56,18 @@ public class JobAdvertsController {
         return this.jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrue();
     }
 
+    @GetMapping("/getActiveAndConfirmedJobAdvertCount")
+    public int getActiveAndConfirmedJobAdvertCount() {
+        if (Math.round((double) this.jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrue()
+                                                     .getData()
+                                                     .size() / 5) < 1) {
+            return 1;
+        } else {
+            return (int) Math.ceil((double) this.jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrue()
+                                                                 .getData()
+                                                                 .size() / (double) 5);
+        }
+    }
 
     @GetMapping("/getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageDesc")
     public DataResult<List<JobAdvert>> getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageDesc(
