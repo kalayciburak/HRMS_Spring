@@ -8,7 +8,7 @@ import torukobyte.hrms.entities.dtos.addDtos.FavoriteAddDto;
 import java.util.List;
 
 public interface FavoriteService {
-    Result addFavorite(FavoriteAddDto favorite);
+    Result addFavorite(Favorite favorite);
 
     Result deleteFavorite(int id);
 
