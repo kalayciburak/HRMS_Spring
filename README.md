@@ -12,7 +12,7 @@ a.k.a<a href="https://github.com/8CA5F" target="_blank"> 8CA5F</a></b>
 </h2>
 <p>
 Bu proje <a href="https://www.kodlama.io/courses/1332369/author_bio">
-Engin Demiroğ'</a> un Java-React kampı için geliştirilmiştir.
+Engin Demiroğ</a>'un Java-React kampı için geliştirilmiştir.
 </p>
 
 ### <span style="color:#b453ff;">Kurumsal Mimari</span>
